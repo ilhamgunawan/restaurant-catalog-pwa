@@ -1,0 +1,156 @@
+$primary-color: #FEC840;
+$transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/*
+    Top Navbar
+*/
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: $primary-color;
+  transition: $transition-standard;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  
+  .brand-container {
+    width: 100%;
+
+      .brand-name {
+          text-align: center;
+          color: white;
+          font-size: 1.2rem;
+          font-weight: 600;
+          transition: $transition-standard;
+          user-select: none;
+          -webkit-user-select: none;
+      }
+  }
+
+  .menu-button-container {
+      display: flex;
+      align-items: center;
+
+      .menu-button {
+          font-size: 2rem;
+          color: white;
+          background-color: $primary-color;
+          border: none;
+          transition: $transition-standard;
+          padding: 0.5rem;
+
+          &:hover {
+              cursor: pointer;
+              background-color: rgba(0,0,0,0.1);
+          }
+      }
+  }
+
+  @media screen and (min-width: 768px) {
+      .brand-container {
+          .brand-name {
+              font-size: 1.5rem;
+          }
+      } 
+  }
+}
+
+
+/*
+    Sidenav Mobile
+*/
+
+.sidenav-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 60%;
+  background-color: $primary-color;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  transform: translate(-100%, 0);
+
+  .sidenav-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    .sidenav-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      transition: $transition-standard;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(0,0,0,0.1);
+      }
+
+      .material-icons {
+        font-size: 2rem;
+      }
+
+      .sidenav-link-name {
+        font-weight: 400;
+        font-size: 1.1rem;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.open {
+  transform: translate(0, 0);
+}
+
+
+/*
+    Bottom Navbar
+*/
+
+#bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: $primary-color;
+  box-shadow: 0 -1.5px 8px rgba(0, 0, 0, 0.2);
+
+  .bottom-nav-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .bottom-nav-button {
+      font-size: 2rem;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      transition: $transition-standard;
+      padding: 0.5rem;
+      width: 100%;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(0,0,0,0.1);
+    }
+    }
+  }
+}
