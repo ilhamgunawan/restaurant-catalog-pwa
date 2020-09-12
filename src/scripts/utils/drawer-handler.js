@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const DrawerHandler = {
   init({ menuButton, drawer, content }) {
     menuButton.addEventListener('click', (event) => {

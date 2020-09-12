@@ -8,5 +8,5 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
   },
-  devtool: 'cheap-eval-source-map',
+  devtool: 'inline-source-map',
 });
