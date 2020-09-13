@@ -1,4 +1,6 @@
 $primary-color: #FEC840;
+// $primary-color: #801336;
+// $primary-color: skyblue;
 $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
 * {
@@ -8,7 +10,12 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 }
 
 body {
+  position: relative;
   font-family: 'Open Sans', sans-serif;
+}
+
+.material-icons, a, button {
+  user-select: none;
 }
 
 /*
@@ -97,12 +104,6 @@ header {
           .material-icons {
             font-size: 1.2rem;
           }
-    
-          .topnav-link-name {
-            font-weight: 400;
-            font-size: 1.1rem;
-            margin-left: 10px;
-          }
         }
       }
   }
@@ -114,6 +115,9 @@ header {
 */
 
 .sidenav-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
@@ -149,9 +153,18 @@ header {
       .sidenav-link-name {
         font-weight: 400;
         font-size: 1.1rem;
-        margin-left: 10px;
+        margin-left: 15px;
       }
     }
+  }
+
+  .sidenav-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    padding: 1rem;
+    font-size: 0.9rem;
   }
 
   @media screen and (min-width: 768px) {
@@ -161,6 +174,46 @@ header {
 
 .open {
   transform: translate(0, 0);
+}
+
+
+/*
+    Sidenav Desktop
+*/
+
+#sidenav-desktop-container {
+  grid-row-start: 1;
+  grid-row-end: 999;
+}
+
+.sidenav-desktop-wrapper {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 0 10px;
+    position: sticky;
+    top: 60px;
+    border-radius: 20px;
+
+    .sidenav-desktop-link {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      color: black;
+      padding: 1rem;
+      transition: $transition-standard;
+      
+      &:hover {
+        color: $primary-color;
+      }
+
+      .sidenav-desktop-link-name {
+        margin-left: 20px;
+      }
+    }
+  }
 }
 
 
@@ -206,11 +259,50 @@ header {
 
 
 /*
+    Footer
+*/
+
+footer {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background-color: #333;
+    
+    .footer-text {
+      color: #e5e5e5;
+      font-size: 0.8rem;
+    }   
+  }
+}
+
+
+/*
+    Loading indicator
+*/
+
+.loading-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .loading-text {
+    font-size: 0.8rem;
+  }
+}
+
+
+/*
     Main Content
 */
 
 #mainContent {
-  margin: 3rem 0;
+  margin-top: 30px;
   // min-height: 80vh;
 }
 
@@ -221,6 +313,7 @@ header {
 
 .home-wrapper {
   padding-bottom: 5rem;
+  margin: auto;
 
   .hero-wrapper {
     .hero-image {
@@ -254,13 +347,12 @@ header {
   }
 
   .home-restaurants-section, .home-fav-section {
-    margin-bottom: 20px;
 
     .home-navigate-link {
       display: block;
       text-decoration: none;
       padding: 0.5rem;
-      margin: auto;
+      margin-left: 18px;
       color: black;
       width: fit-content;
       height: 44px;
@@ -268,11 +360,11 @@ header {
       align-items: center;
 
       &:hover {
-        color: $primary-color;
+        text-decoration: underline;
       }
 
-      .material-icons {
-        font-size: 1.2rem;
+      .home-navigate-icon {
+        width: 10px;
       }
 
       .home-subtitle {
@@ -292,8 +384,13 @@ header {
   }
 
   @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
     .hero-wrapper {
       .hero-image {
+        height: 300px;
+
         .hero-overlay {
           .hero-text-wrapper {
             .hero-text {
@@ -303,14 +400,47 @@ header {
         }
       }
     }
+
+    .home-restaurants-section, .home-fav-section {
+      .home-restaurants-list, .home-fav-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .home-navigate-link {
+        margin: 10px 0;
+      }
+    }
+
+    .home-fav-section {
+      grid-column-start: 2;
+    }
   }
 
   @media screen and (min-width: 1024px) {
-    .hero-wrapper {
-      .hero-image {
-        height: 300px;
+    .home-restaurants-section, .home-fav-section {
+      .home-restaurants-list, .home-fav-list {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .home-navigate-link {
+        .home-subtitle {
+          font-size: 1.8rem;
+        }
       }
     }
+  }
+
+  @media screen and (min-width: 1280px) {
+    .home-restaurants-section, .home-fav-section {
+      .home-restaurants-list, .home-fav-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: 1fr 5fr;
   }
 }
 
@@ -321,10 +451,10 @@ header {
 
 .card-wrapper {
   width: 85%;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  border: 1px solid #cdcdcd;
   border-radius: 20px;
   overflow: hidden;
-  margin: 1rem 0;
+  margin-bottom: 10px;
 
   .card-image {
     width: 100%;
