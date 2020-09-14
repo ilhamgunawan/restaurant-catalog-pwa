@@ -156,10 +156,28 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
   .restaurant-detail-content {
     margin-top: 20px;
-    padding: 0 10px;
+    padding: 0 20px;
 
     .restaurant-image {
       max-width: 768px;
+    }
+  }
+
+
+  /*
+    Card
+  */
+
+  .card-wrapper {
+    .card-image {
+      height: 150px;
+    }
+
+    .card-content {
+      .card-description {
+        height: 70px;
+        overflow: hidden;
+      }
     }
   }
 

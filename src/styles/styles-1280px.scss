@@ -23,4 +23,14 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
+
+  /*
+    Card
+  */
+
+  .card-wrapper {
+    .card-image {
+      height: 200px;
+    }
+  }
 }
