@@ -1,0 +1,23 @@
+$primary-color: #FEC840;
+// $primary-color: #801336;
+// $primary-color: skyblue;
+$transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+
+@media screen and (min-width: 1024px) {
+
+  /*
+    Restaurant Section
+  */
+
+  .restaurant-section {
+    .restaurant-list {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .section-navigate-link {
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}

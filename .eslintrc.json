@@ -14,6 +14,10 @@
     "rules": {
         "no-console": "off",
         "no-underscore-dangle": "off",
-        "eol-last": ["error", "never"]
+        "eol-last": "off",
+        "object-curly-newline": "off",
+        "no-return-assign": "off",
+        "no-param-reassign": "off",
+        "max-len": "off"
     }
 }

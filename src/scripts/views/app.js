@@ -1,11 +1,13 @@
 import DrawerHandler from '../utils/drawer-handler';
-import Home from './pages/home';
+import routes from '../routes/routes';
+import UrlParser from '../routes/url-parser';
 
 class App {
-  constructor({ menuButton, drawer, content }) {
+  constructor({ menuButton, drawer, content, navbarTitle }) {
     this._menuButton = menuButton;
     this._drawer = drawer;
     this._content = content;
+    this._navbarTitle = navbarTitle;
     this.initialAppShell();
   }
 
@@ -13,13 +15,16 @@ class App {
     DrawerHandler.init({
       menuButton: this._menuButton,
       drawer: this._drawer,
-      content: this._content,
     });
   }
 
   async renderPage() {
-    this._content.innerHTML = Home.render();
-    Home.afterRender();
+    const url = UrlParser.parseActiveUrlWithCombiner();
+    const page = routes[url];
+    const pageTitle = `Cari Résto / ${url.replace('/', '')}`;
+    this._navbarTitle.innerHTML = pageTitle;
+    this._content.innerHTML = await page.render();
+    await page.afterRender();
   }
 }
 

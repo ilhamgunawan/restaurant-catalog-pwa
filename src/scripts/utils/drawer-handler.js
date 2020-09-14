@@ -1,11 +1,11 @@
 const DrawerHandler = {
-  init({ menuButton, drawer, content }) {
+  init({ menuButton, drawer }) {
     menuButton.addEventListener('click', (event) => {
       this.openDrawer(event, drawer);
     });
 
-    content.addEventListener('click', (event) => {
-      this.closeDrawer(event, drawer);
+    document.addEventListener('click', (event) => {
+      if (event.target !== drawer) this.closeDrawer(event, drawer);
     });
   },
 
