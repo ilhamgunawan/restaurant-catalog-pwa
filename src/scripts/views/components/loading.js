@@ -2,7 +2,8 @@ const Loading = {
   render() {
     return `
       <div class="loading-container">
-        <span class="loading-text">Loading...</span>
+        <i class="material-icons">hourglass_bottom</i>
+        <span class="loading-text">Now Loading...</span>
       </div>
     `;
   },

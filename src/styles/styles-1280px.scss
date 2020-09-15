@@ -1,6 +1,4 @@
 $primary-color: #FEC840;
-// $primary-color: #801336;
-// $primary-color: skyblue;
 $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
 @media screen and (min-width: 1280px) {
@@ -21,6 +19,32 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   .restaurant-section {
     .restaurant-list {
       grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  /*
+    Restaurant Detail
+  */
+
+  .restaurant-detail-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    .restaurant-image, .restaurant-info-wrapper, .menus-wrapper, .restaurant-description {
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
+
+    .restaurant-reviews-container {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      padding: 10px 10px 0 40px;
+    }
+
+    .review-form {
+      grid-column: 1 / 2;
+      grid-row-start: 5;
     }
   }
 

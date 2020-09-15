@@ -1,6 +1,4 @@
 $primary-color: #fec840;
-// $primary-color: #801336;
-// $primary-color: skyblue;
 $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
 * {
@@ -12,6 +10,15 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 body {
   position: relative;
   font-family: 'Open Sans', sans-serif;
+}
+
+::selection {
+  background: $primary-color;
+  color: white;
+}
+::-moz-selection {
+  background: $primary-color;
+  color: white;
 }
 
 .material-icons, 
@@ -196,6 +203,7 @@ footer {
 .loading-container {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 30px 0;
@@ -450,5 +458,86 @@ footer {
 
   .restaurant-description {
     font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .restaurant-reviews-container {
+    display: flex;
+    flex-direction: column;
+
+    .review-title {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+    .review-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 10px;
+      background-color: mintcream;
+
+      .review-name {
+        color: dodgerblue;
+      }
+
+      .review-date {
+        font-weight: 300;
+        font-size: 0.7rem;
+        color: #666;
+      }
+
+      .review-content {
+        font-style: italic;
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .review-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+
+    .form-title {
+      grid-column: 1 / 4;
+      font-size: 1rem;
+    }
+
+    .form-name-label, .form-review-label {
+      grid-column-start: 1;
+      font-size: 0.8rem;
+    }
+
+    .form-name-input, .form-review-input {
+      grid-column: 1 / 4;
+      padding: 5px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: 100%;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .form-review-input {
+      max-width: 100%;
+    }
+
+    .form-submit-button {
+      grid-column-start: 3;
+      grid-row-start: 7;
+      background-color: lightgrey;
+      color: #121212;
+      border: none;
+      padding: 15px;
+      border-radius: 20px;
+      transition: $transition-standard;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(0,0,0,0.1);
+      }
+    }
   }
 }

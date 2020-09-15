@@ -1,41 +1,24 @@
 import Card from '../components/card';
 import SidenavDesktop from '../components/sidenav-desktop';
 import RestaurantSource from '../../data/restaurant-source';
+import SectionNavigateLink from '../components/section-navigate-link';
+import HeroImage from '../components/hero-image';
 
 const Home = {
   async render() {
     return `
       <div class="home-wrapper">
-        <div class="sidenav-desktop-container"></div>
-
-        <section class="hero-wrapper">
-          <div class="hero-image" style="background-image: url('/images/heros/hero-image_2.jpg');">
-            <div class="hero-overlay">
-              <div class="hero-text-wrapper">
-                <span class="hero-text">Cari Résto</span>
-                <span class="hero-text">Platform to find best restaurant in town</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
+        <aside class="sidenav-desktop-container"></aside>
+        <section class="hero-wrapper"></section>
         <section class="restaurant-section">
-          <a href="#/restaurants" class="section-navigate-link">
-            <img class="section-navigate-icon" src="/icon-link.svg" alt="link icon">
-            <h2 class="section-title">Restaurant Catalogue</h2>  
-          </a>
-          <div class="loading-holder"></div>
+          <div class="restaurant-link-container"></div>
           <section class="restaurant-list"></section>
-        </section>
-
+        </section>   
+        <div class="loading-holder"></div>        
         <section class="restaurant-section home-fav-section">
-          <a href="#/favorite" class="section-navigate-link">
-            <img class="section-navigate-icon" src="/icon-link.svg" alt="link icon">
-            <h2 class="section-title">Favorite List</h2>  
-          </a>  
+          <div class="favorite-link-container"></div>
           <section class="restaurant-list home-fav-list"></section>
         </section>
-
       </div>
     `;
   },
@@ -44,8 +27,17 @@ const Home = {
     const sidenavDesktop = document.querySelector('.sidenav-desktop-container');
     sidenavDesktop.innerHTML = SidenavDesktop.render();
 
+    const heroImageContainer = document.querySelector('.hero-wrapper');
+    heroImageContainer.innerHTML = HeroImage.render();
+
     const loadingHolder = document.querySelector('.loading-holder');
     const restaurants = await RestaurantSource.getRestaurantList(loadingHolder);
+
+    const restaurantLink = document.querySelector('.restaurant-link-container');
+    restaurantLink.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
+
+    const favoriteLink = document.querySelector('.favorite-link-container');
+    favoriteLink.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
 
     const restaurantsList = document.querySelector('.restaurant-list');
     restaurantsList.innerHTML = restaurants

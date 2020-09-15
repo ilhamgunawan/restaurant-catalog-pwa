@@ -7,12 +7,9 @@ const RestaurantDetail = {
   async render() {
     return `
       <div class="restaurant-detail-wrapper">
-        <div class="sidenav-desktop-container"></div>
-
-        <section class="restaurant-detail-content">
-          <div class="loading-holder"></div>
-        </section>
-      
+        <aside class="sidenav-desktop-container"></aside>
+        <section class="restaurant-detail-content"></section>
+        <div class="loading-holder"></div>
       </div>
     `;
   },

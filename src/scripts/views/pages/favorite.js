@@ -1,21 +1,18 @@
 // import Card from '../components/card';
 import SidenavDesktop from '../components/sidenav-desktop';
+import SectionNavigateLink from '../components/section-navigate-link';
+import Loading from '../components/loading';
 
 const Favorite = {
   async render() {
     return `
       <div class="favorite-wrapper">
-        <div class="sidenav-desktop-container"></div>
-
+        <aside class="sidenav-desktop-container"></aside>
         <section class="restaurant-section">
-          <a href="#/favorite" class="section-navigate-link">
-            <img class="section-navigate-icon" src="/icon-link.svg" alt="link icon">
-            <h2 class="section-title">Favorite List</h2>  
-          </a>
-          <div class="loading-holder"></div>
+          <div class="favorite-link-container"></div>
           <section class="restaurant-list"></section>
-        </section>
-
+        </section>        
+        <div class="loading-holder"></div>
       </div>
     `;
   },
@@ -24,10 +21,20 @@ const Favorite = {
     const sidenavDesktop = document.querySelector('.sidenav-desktop-container');
     sidenavDesktop.innerHTML = SidenavDesktop.render();
 
-    const restaurantList = document.querySelector('.restaurant-list');
-    restaurantList.innerHTML = `
-      <span>Favorite list empty.</span>
-    `;
+    const loadingHolder = document.querySelector('.loading-holder');
+    loadingHolder.innerHTML = Loading.render();
+
+    setTimeout(() => {
+      loadingHolder.innerHTML = '';
+
+      const favoriteLink = document.querySelector('.favorite-link-container');
+      favoriteLink.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
+
+      const restaurantList = document.querySelector('.restaurant-list');
+      restaurantList.innerHTML = `
+        <span>Favorite list empty.</span>
+      `;
+    }, 500);
   },
 };
 

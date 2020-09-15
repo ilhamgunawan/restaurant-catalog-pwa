@@ -1,22 +1,18 @@
 import Card from '../components/card';
 import SidenavDesktop from '../components/sidenav-desktop';
 import RestaurantSource from '../../data/restaurant-source';
+import SectionNavigateLink from '../components/section-navigate-link';
 
 const RestaurantCatalogue = {
   async render() {
     return `
       <div class="restaurant-catalogue-wrapper">
-        <div class="sidenav-desktop-container"></div>
-
+        <aside class="sidenav-desktop-container"></aside>
         <section class="restaurant-section">
-          <a href="#/restaurants" class="section-navigate-link">
-            <img class="section-navigate-icon" src="/icon-link.svg" alt="link icon">
-            <h2 class="section-title">Restaurant Catalogue</h2>  
-          </a>
-          <div class="loading-holder"></div>
+          <div class="restaurant-link-container"></div>
           <section class="restaurant-list"></section>
-        </section>
-
+        </section>       
+        <div class="loading-holder"></div>
       </div>
     `;
   },
@@ -27,6 +23,9 @@ const RestaurantCatalogue = {
 
     const loadingHolder = document.querySelector('.loading-holder');
     const restaurants = await RestaurantSource.getRestaurantList(loadingHolder);
+
+    const restaurantLink = document.querySelector('.restaurant-link-container');
+    restaurantLink.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
 
     const restaurantList = document.querySelector('.restaurant-list');
     restaurantList.innerHTML = restaurants
