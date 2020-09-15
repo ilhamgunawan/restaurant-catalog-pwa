@@ -1,7 +1,18 @@
 import CONFIG from '../../globals/config';
+import PostReview from '../../data/post-review-handler';
+import Alert from './alert';
 
 const RestaurantDetailContent = {
-  render({ name, description, pictureId, city, address, rating, menus: { foods, drinks }, consumerReviews }) {
+  async render({
+    name,
+    description,
+    pictureId,
+    city,
+    address,
+    rating,
+    menus: { foods, drinks },
+    consumerReviews,
+  }) {
     return `
       <img class="restaurant-image" src="${CONFIG.MEDIUM_IMAGE_URL}${pictureId}" alt="restaurant">
       <div class="restaurant-info-wrapper">
@@ -32,14 +43,15 @@ const RestaurantDetailContent = {
           ${this.renderReviews(consumerReviews)}
         </div>
       </div>
-      <form class="review-form" submit="#">
+      <form class="review-form">
         <h3 class="form-title">Post Review</h3>
         <label class="form-name-label" for="your-name">Name:</label>
         <input class="form-name-input" type="text" id="your-name" name="your-name" placeholder="Your Name">
         <label class="form-review-label" for="your-review">Review:</label>
         <textarea class="form-review-input" id="your-review" name="your-review" placeholder="Your Review"></textarea>
         <input class="form-submit-button" type="button" value="Post Review">
-      </form> 
+      </form>
+      <div class="alert-placeholder"></div>
     `;
   },
 
@@ -64,6 +76,25 @@ const RestaurantDetailContent = {
           <span class="review-date">${consumerReview.date}</span>
           <p class="review-content">"${consumerReview.review}"</p>
         </div>`, '');
+  },
+
+  async afterRender(restaurantId) {
+    const alertPlaceholder = document.querySelector('.alert-placeholder');
+    alertPlaceholder.innerHTML = Alert.render();
+
+    const submitButton = document.querySelector('.form-submit-button');
+    const inputName = document.querySelector('.form-name-input');
+    const inputReview = document.querySelector('.form-review-input');
+    const alertContainer = document.querySelector('.alert-container');
+    const alertMessageContainer = document.querySelector('.alert-message');
+    await PostReview.post({
+      submitButton,
+      restaurantId,
+      inputName,
+      inputReview,
+      alertContainer,
+      alertMessageContainer,
+    });
   },
 };
 

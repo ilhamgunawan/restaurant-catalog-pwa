@@ -24,30 +24,45 @@ const Home = {
   },
 
   async afterRender() {
-    const sidenavDesktop = document.querySelector('.sidenav-desktop-container');
-    sidenavDesktop.innerHTML = SidenavDesktop.render();
+    const sidenavDesktopContainer = document.querySelector('.sidenav-desktop-container');
+    this.renderSidenavDesktop(sidenavDesktopContainer);
 
     const heroImageContainer = document.querySelector('.hero-wrapper');
-    heroImageContainer.innerHTML = HeroImage.render();
+    this.renderHeroImage(heroImageContainer);
 
     const loadingHolder = document.querySelector('.loading-holder');
     const restaurants = await RestaurantSource.getRestaurantList(loadingHolder);
 
-    const restaurantLink = document.querySelector('.restaurant-link-container');
-    restaurantLink.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
+    const restaurantLinkContainer = document.querySelector('.restaurant-link-container');
+    const favoriteLinkContainer = document.querySelector('.favorite-link-container');
+    this.renderSectionLink(restaurantLinkContainer, favoriteLinkContainer);
 
-    const favoriteLink = document.querySelector('.favorite-link-container');
-    favoriteLink.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
-
-    const restaurantsList = document.querySelector('.restaurant-list');
-    restaurantsList.innerHTML = restaurants
-      .slice(0, 8)
-      .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
+    const restaurantListContainer = document.querySelector('.restaurant-list');
+    this.renderRestaurantList(restaurantListContainer, restaurants);
 
     const favoriteList = document.querySelector('.home-fav-list');
     favoriteList.innerHTML = `
       <span>Favorite list empty.</span>
     `;
+  },
+
+  renderSidenavDesktop(sidenavDesktopContainer) {
+    sidenavDesktopContainer.innerHTML = SidenavDesktop.render();
+  },
+
+  renderHeroImage(heroImageContainer) {
+    heroImageContainer.innerHTML = HeroImage.render();
+  },
+
+  renderRestaurantList(restaurantListContainer, restaurants) {
+    restaurantListContainer.innerHTML = restaurants
+      .slice(0, 8)
+      .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
+  },
+
+  renderSectionLink(restaurantLinkContainer, favoriteLinkContainer) {
+    restaurantLinkContainer.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
+    favoriteLinkContainer.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
   },
 };
 

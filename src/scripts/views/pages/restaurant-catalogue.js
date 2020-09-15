@@ -18,17 +18,29 @@ const RestaurantCatalogue = {
   },
 
   async afterRender() {
-    const sidenavDesktop = document.querySelector('.sidenav-desktop-container');
-    sidenavDesktop.innerHTML = SidenavDesktop.render();
+    const sidenavDesktopContainer = document.querySelector('.sidenav-desktop-container');
+    this.renderSidenavDesktop(sidenavDesktopContainer);
 
     const loadingHolder = document.querySelector('.loading-holder');
     const restaurants = await RestaurantSource.getRestaurantList(loadingHolder);
 
-    const restaurantLink = document.querySelector('.restaurant-link-container');
-    restaurantLink.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
+    const restaurantLinkContainer = document.querySelector('.restaurant-link-container');
+    this.renderSectionLink(restaurantLinkContainer);
 
-    const restaurantList = document.querySelector('.restaurant-list');
-    restaurantList.innerHTML = restaurants
+    const restaurantListContainer = document.querySelector('.restaurant-list');
+    this.renderRestaurantList(restaurantListContainer, restaurants);
+  },
+
+  renderSidenavDesktop(sidenavDesktopContainer) {
+    sidenavDesktopContainer.innerHTML = SidenavDesktop.render();
+  },
+
+  renderSectionLink(restaurantLinkContainer) {
+    restaurantLinkContainer.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
+  },
+
+  renderRestaurantList(restaurantListContainer, restaurants) {
+    restaurantListContainer.innerHTML = restaurants
       .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
   },
 };

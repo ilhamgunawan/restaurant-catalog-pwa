@@ -527,8 +527,8 @@ footer {
     .form-submit-button {
       grid-column-start: 3;
       grid-row-start: 7;
-      background-color: lightgrey;
-      color: #121212;
+      background-color: $primary-color;
+      color: white;
       border: none;
       padding: 15px;
       border-radius: 20px;
@@ -536,8 +536,35 @@ footer {
 
       &:hover {
         cursor: pointer;
-        background-color: rgba(0,0,0,0.1);
+        opacity: 0.7;
       }
     }
   }
+}
+
+/*
+    Alert component
+*/
+
+.alert-container {
+  position: fixed;
+  top: 100px;
+  left: 30%;
+  right: 30%;
+  width: fit-content;
+  margin: auto;
+  background-color: $primary-color;
+  padding: 10px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  border-radius: 20px;
+  transition: transform 0.2s ease-in-out;
+  transform: translate(0, -100vh);
+
+  .alert-message {
+    color: white;
+  }
+}
+
+.alert-open {
+  transform: translate(0, 0);
 }

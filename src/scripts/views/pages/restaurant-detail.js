@@ -15,18 +15,27 @@ const RestaurantDetail = {
   },
 
   async afterRender() {
-    const sidenavDesktop = document.querySelector('.sidenav-desktop-container');
-    sidenavDesktop.innerHTML = SidenavDesktop.render();
+    const sidenavDesktopContainer = document.querySelector('.sidenav-desktop-container');
+    this.renderSidenavDesktop(sidenavDesktopContainer);
 
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const loadingHolder = document.querySelector('.loading-holder');
-    const navbarTitle = document.querySelector('.brand-name');
     const restaurant = await RestaurantSource.getRestaurantDetail(url.id, loadingHolder);
 
-    navbarTitle.innerHTML = `Cari Résto / ${restaurant.name}`;
+    const navbarTitle = document.querySelector('.brand-name');
+    this.renderNavbarTitle(navbarTitle, restaurant.name);
 
     const restaurantDetailContent = document.querySelector('.restaurant-detail-content');
-    restaurantDetailContent.innerHTML = RestaurantDetailContent.render(restaurant);
+    restaurantDetailContent.innerHTML = await RestaurantDetailContent.render(restaurant);
+    await RestaurantDetailContent.afterRender(restaurant.id);
+  },
+
+  renderSidenavDesktop(sidenavDesktopContainer) {
+    sidenavDesktopContainer.innerHTML = SidenavDesktop.render();
+  },
+
+  renderNavbarTitle(navbarTitle, restaurantName) {
+    navbarTitle.innerHTML = `Cari Résto / ${restaurantName}`;
   },
 };
 

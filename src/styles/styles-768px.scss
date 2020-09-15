@@ -78,8 +78,7 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   */
 
   .sidenav-desktop-container {
-    grid-row-start: 1;
-    grid-row-end: 999;
+    grid-row: 1 / 99;
 
     .sidenav-desktop-wrapper {
       display: flex;
@@ -167,8 +166,7 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
         }
 
         .review-content {
-          grid-column-start: 1;
-          grid-column-end: 3;
+          grid-column: 1 / 3;
         }
       }
     }
