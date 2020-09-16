@@ -1,13 +1,11 @@
 import FavoriteRestaurantIdb from '../data/favorite-restaurant-idb';
 import FavoriteButton from '../views/components/favorite-button';
-import Alert from '../views/components/alert';
+import AlertHandler from './alert-handler';
 
 const FavoriteButtonHandler = {
-  async init({ favoriteButtonContainer, restaurant, alertContainer, alertMessageContainer }) {
+  async init(favoriteButtonContainer, restaurant) {
     this._favoriteButtonContainer = favoriteButtonContainer;
     this._restaurant = restaurant;
-    this._alertContainer = alertContainer;
-    this._alertMessageContainer = alertMessageContainer;
 
     await this.renderButton();
   },
@@ -32,8 +30,8 @@ const FavoriteButtonHandler = {
     const favButton = document.querySelector('.fav-icon');
     favButton.addEventListener('click', async () => {
       await FavoriteRestaurantIdb.putRestaurant(this._restaurant);
-      Alert.addedToFavoriteAlert(this._alertContainer, this._alertMessageContainer);
-      Alert.closeAlert(this._alertContainer);
+      AlertHandler.addedToFavoriteAlert();
+      AlertHandler.closeAlert();
       this.renderButton();
     });
   },
@@ -44,8 +42,8 @@ const FavoriteButtonHandler = {
     const favButton = document.querySelector('.fav-icon');
     favButton.addEventListener('click', async () => {
       await FavoriteRestaurantIdb.deleteRestaurant(this._restaurant.id);
-      Alert.removeFromFavoriteAlert(this._alertContainer, this._alertMessageContainer);
-      Alert.closeAlert(this._alertContainer);
+      AlertHandler.removeFromFavoriteAlert();
+      AlertHandler.closeAlert();
       this.renderButton();
     });
   },

@@ -1,7 +1,7 @@
 import Card from '../components/card';
-import SidenavDesktop from '../components/sidenav-desktop';
 import SectionNavigateLink from '../components/section-navigate-link';
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
+import SidenavDesktopInitiator from '../../utils/sidenav-desktop-initiator';
 
 const Favorite = {
   async render() {
@@ -18,15 +18,9 @@ const Favorite = {
   },
 
   async afterRender() {
-    const sidenavDesktop = document.querySelector('.sidenav-desktop-container');
-    sidenavDesktop.innerHTML = SidenavDesktop.render();
-
-    const loadingHolder = document.querySelector('.loading-holder');
-    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants(loadingHolder);
-
-    const favoriteLinkContainer = document.querySelector('.favorite-link-container');
-    this.renderSectionLink(favoriteLinkContainer);
-
+    SidenavDesktopInitiator.init();
+    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
+    this.renderSectionLink();
     this.isFavoriteListEmpty(restaurants);
   },
 
@@ -48,7 +42,8 @@ const Favorite = {
     restaurantListContainer.innerHTML = '<span>Favorite list empty</span>';
   },
 
-  renderSectionLink(favoriteLinkContainer) {
+  renderSectionLink() {
+    const favoriteLinkContainer = document.querySelector('.favorite-link-container');
     favoriteLinkContainer.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
   },
 };

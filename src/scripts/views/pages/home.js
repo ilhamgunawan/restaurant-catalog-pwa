@@ -1,9 +1,10 @@
 import Card from '../components/card';
-import SidenavDesktop from '../components/sidenav-desktop';
 import SectionNavigateLink from '../components/section-navigate-link';
 import HeroImage from '../components/hero-image';
 import RestaurantSource from '../../data/restaurant-source';
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
+import SidenavDesktopInitiator from '../../utils/sidenav-desktop-initiator';
+import OfflineConnectionHandler from '../../utils/offline-connection-handler';
 
 const Home = {
   async render() {
@@ -14,6 +15,7 @@ const Home = {
         <section class="restaurant-section">
           <div class="restaurant-link-container"></div>
           <section class="restaurant-list"></section>
+          <div class="offline-indicator-container"></div>
         </section>   
         <div class="loading-holder"></div>        
         <section class="restaurant-section home-fav-section">
@@ -25,30 +27,24 @@ const Home = {
   },
 
   async afterRender() {
-    const sidenavDesktopContainer = document.querySelector('.sidenav-desktop-container');
-    this.renderSidenavDesktop(sidenavDesktopContainer);
-
-    const heroImageContainer = document.querySelector('.hero-wrapper');
-    this.renderHeroImage(heroImageContainer);
-
-    const loadingHolder = document.querySelector('.loading-holder');
-    const restaurants = await RestaurantSource.getRestaurantList(loadingHolder);
-    const favorites = await FavoriteRestaurantIdb.getAllRestaurants(loadingHolder);
-
-    const restaurantLinkContainer = document.querySelector('.restaurant-link-container');
-    const favoriteLinkContainer = document.querySelector('.favorite-link-container');
-    this.renderSectionLink(restaurantLinkContainer, favoriteLinkContainer);
-
-    const restaurantListContainer = document.querySelector('.restaurant-list');
-    this.renderRestaurantList(restaurantListContainer, restaurants);
+    SidenavDesktopInitiator.init();
+    this.renderHeroImage();
+    try {
+      const restaurants = await RestaurantSource.getRestaurantList();
+      this.renderSectionLink();
+      const restaurantListContainer = document.querySelector('.restaurant-list');
+      this.renderRestaurantList(restaurantListContainer, restaurants);
+    } catch (error) {
+      this.renderSectionLink();
+      const offlineContainer = document.querySelector('.offline-indicator-container');
+      offlineContainer.innerHTML = OfflineConnectionHandler.init();
+    }
+    const favorites = await FavoriteRestaurantIdb.getAllRestaurants();
     this.isFavoriteListEmpty(favorites);
   },
 
-  renderSidenavDesktop(sidenavDesktopContainer) {
-    sidenavDesktopContainer.innerHTML = SidenavDesktop.render();
-  },
-
-  renderHeroImage(heroImageContainer) {
+  renderHeroImage() {
+    const heroImageContainer = document.querySelector('.hero-wrapper');
     heroImageContainer.innerHTML = HeroImage.render();
   },
 
@@ -71,7 +67,9 @@ const Home = {
     favoriteListContainer.innerHTML = '<span>Favorite list empty</span>';
   },
 
-  renderSectionLink(restaurantLinkContainer, favoriteLinkContainer) {
+  renderSectionLink() {
+    const restaurantLinkContainer = document.querySelector('.restaurant-link-container');
+    const favoriteLinkContainer = document.querySelector('.favorite-link-container');
     restaurantLinkContainer.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
     favoriteLinkContainer.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
   },

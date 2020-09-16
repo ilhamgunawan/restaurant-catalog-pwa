@@ -551,6 +551,7 @@ footer {
   }
 }
 
+
 /*
     Alert component
 */
@@ -576,4 +577,16 @@ footer {
 
 .alert-open {
   transform: translate(0, 0);
+}
+
+
+/*
+    Offline indicator
+*/
+
+.offline-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
 }

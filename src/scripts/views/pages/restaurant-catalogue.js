@@ -1,7 +1,8 @@
 import Card from '../components/card';
-import SidenavDesktop from '../components/sidenav-desktop';
 import RestaurantSource from '../../data/restaurant-source';
 import SectionNavigateLink from '../components/section-navigate-link';
+import SidenavDesktopInitiator from '../../utils/sidenav-desktop-initiator';
+import OfflineConnectionHandler from '../../utils/offline-connection-handler';
 
 const RestaurantCatalogue = {
   async render() {
@@ -13,35 +14,32 @@ const RestaurantCatalogue = {
           <section class="restaurant-list"></section>
         </section>       
         <div class="loading-holder"></div>
+        <div class="offline-indicator-container"></div>
       </div>
     `;
   },
 
   async afterRender() {
-    const sidenavDesktopContainer = document.querySelector('.sidenav-desktop-container');
-    this.renderSidenavDesktop(sidenavDesktopContainer);
+    SidenavDesktopInitiator.init();
+    this.renderSectionLink();
+    try {
+      const restaurants = await RestaurantSource.getRestaurantList();
+      this.renderRestaurantList(restaurants);
+    } catch (error) {
+      const offlineContainer = document.querySelector('.offline-indicator-container');
+      offlineContainer.innerHTML = OfflineConnectionHandler.init();
+    }
+  },
 
-    const loadingHolder = document.querySelector('.loading-holder');
-    const restaurants = await RestaurantSource.getRestaurantList(loadingHolder);
-
-    const restaurantLinkContainer = document.querySelector('.restaurant-link-container');
-    this.renderSectionLink(restaurantLinkContainer);
-
+  renderRestaurantList(restaurants) {
     const restaurantListContainer = document.querySelector('.restaurant-list');
-    this.renderRestaurantList(restaurantListContainer, restaurants);
-  },
-
-  renderSidenavDesktop(sidenavDesktopContainer) {
-    sidenavDesktopContainer.innerHTML = SidenavDesktop.render();
-  },
-
-  renderSectionLink(restaurantLinkContainer) {
-    restaurantLinkContainer.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
-  },
-
-  renderRestaurantList(restaurantListContainer, restaurants) {
     restaurantListContainer.innerHTML = restaurants
       .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
+  },
+
+  renderSectionLink() {
+    const restaurantLinkContainer = document.querySelector('.restaurant-link-container');
+    restaurantLinkContainer.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
   },
 };
 

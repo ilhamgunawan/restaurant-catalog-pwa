@@ -1,5 +1,5 @@
 import RestaurantSource from '../data/restaurant-source';
-import Alert from '../views/components/alert';
+import AlertHandler from './alert-handler';
 
 const PostReview = {
   async post({
@@ -7,8 +7,6 @@ const PostReview = {
     restaurantId,
     inputName,
     inputReview,
-    alertContainer,
-    alertMessageContainer,
   }) {
     submitButton.addEventListener('click', async () => {
       const userReview = {
@@ -19,12 +17,14 @@ const PostReview = {
 
       try {
         const newReviews = await RestaurantSource.postReview(userReview);
-        Alert.reviewPostedAlert(alertContainer, alertMessageContainer);
+        AlertHandler.reviewPostedAlert();
         this.renderUpdatedReviews(newReviews);
         this.resetForm(inputName, inputReview);
-        Alert.closeAlert(alertContainer);
+        AlertHandler.closeAlert();
       } catch (error) {
-        Alert.reviewNotPostedAlert(alertContainer, alertMessageContainer);
+        this.resetForm(inputName, inputReview);
+        AlertHandler.reviewNotPostedAlert();
+        AlertHandler.closeAlert();
       }
     });
   },

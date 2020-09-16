@@ -2,7 +2,7 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -36,8 +36,39 @@ module.exports = {
         },
       ],
     }),
-    new ServiceWorkerWebpackPlugin({
-      entry: path.resolve(__dirname, 'src/scripts/sw.js'),
+    // new WorkboxPlugin.GenerateSW({
+    //   swDest: 'sw.js',
+    //   clientsClaim: true,
+    //   skipWaiting: true,
+    //   runtimeCaching: [
+    //     {
+    //       urlPattern: new RegExp('https://dicoding-restaurant-api.el.r.appspot.com'),
+    //       handler: 'StaleWhileRevalidate',
+    //       options: {
+    //         cacheName: 'CariResto-V1-RestaurantAPI',
+    //       },
+    //     },
+    //     {
+    //       urlPattern: new RegExp('https://fonts.googleapis.com'),
+    //       handler: 'StaleWhileRevalidate',
+    //       options: {
+    //         cacheName: 'CariResto-V1-GoogleFonts',
+    //       },
+    //     },
+    //   ],
+    // }),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: './src/scripts/sw.js',
+      swDest: 'sw.js',
+      include: [
+        /\.html$/,
+        /\.js$/,
+        /\.css$/,
+        /\.json$/,
+        /\.jpg$/,
+        /\.png$/,
+        /\.svg$/,
+      ],
     }),
   ],
 };

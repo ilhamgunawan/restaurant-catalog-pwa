@@ -4,7 +4,7 @@ const Card = {
   render({ id, name, pictureId, description, city, rating }) {
     return `
       <div class="card-wrapper">
-        <image class="card-image" src="${CONFIG.SMALL_IMAGE_URL}${pictureId}" alt="${name}">
+        <image class="card-image" src="${CONFIG.SMALL_IMAGE_URL}/${pictureId}" alt="${name}">
         <div class="card-content">
           <h3 class="card-title">${name}</h3>
           <div class="card-info-wrapper">

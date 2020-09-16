@@ -1,7 +1,8 @@
-import SidenavDesktop from '../components/sidenav-desktop';
 import RestaurantDetailContent from '../components/restaurant-detail-content';
 import RestaurantSource from '../../data/restaurant-source';
 import UrlParser from '../../routes/url-parser';
+import SidenavDesktopInitiator from '../../utils/sidenav-desktop-initiator';
+import OfflineConnectionHandler from '../../utils/offline-connection-handler';
 
 const RestaurantDetail = {
   async render() {
@@ -10,32 +11,34 @@ const RestaurantDetail = {
         <aside class="sidenav-desktop-container"></aside>
         <section class="restaurant-detail-content"></section>
         <div class="loading-holder"></div>
+        <div class="offline-indicator-container"></div>
       </div>
     `;
   },
 
   async afterRender() {
-    const sidenavDesktopContainer = document.querySelector('.sidenav-desktop-container');
-    this.renderSidenavDesktop(sidenavDesktopContainer);
-
+    SidenavDesktopInitiator.init();
     const url = UrlParser.parseActiveUrlWithoutCombiner();
-    const loadingHolder = document.querySelector('.loading-holder');
-    const restaurant = await RestaurantSource.getRestaurantDetail(url.id, loadingHolder);
-
-    const navbarTitle = document.querySelector('.brand-name');
-    this.renderNavbarTitle(navbarTitle, restaurant.name);
-
-    const restaurantDetailContent = document.querySelector('.restaurant-detail-content');
-    restaurantDetailContent.innerHTML = await RestaurantDetailContent.render(restaurant);
-    await RestaurantDetailContent.afterRender(restaurant);
+    const restaurant = await RestaurantSource.getRestaurantDetail(url.id);
+    this.isRestaurantDataReceived(restaurant);
   },
 
-  renderSidenavDesktop(sidenavDesktopContainer) {
-    sidenavDesktopContainer.innerHTML = SidenavDesktop.render();
+  async isRestaurantDataReceived(restaurant) {
+    if (restaurant.id) {
+      const restaurantDetailContent = document.querySelector('.restaurant-detail-content');
+      this.renderNavbarTitle(restaurant.name);
+      restaurantDetailContent.innerHTML = await RestaurantDetailContent.render(restaurant);
+      await RestaurantDetailContent.afterRender(restaurant);
+    } else {
+      const offlineContainer = document.querySelector('.offline-indicator-container');
+      offlineContainer.innerHTML = OfflineConnectionHandler.init();
+      this.renderNavbarTitle('Offline');
+    }
   },
 
-  renderNavbarTitle(navbarTitle, restaurantName) {
-    navbarTitle.innerHTML = `Cari Résto / ${restaurantName}`;
+  renderNavbarTitle(restaurantName) {
+    const navbarTitleContainer = document.querySelector('.brand-name');
+    navbarTitleContainer.innerHTML = `Cari Résto / ${restaurantName}`;
   },
 };
 

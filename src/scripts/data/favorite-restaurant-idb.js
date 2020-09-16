@@ -1,6 +1,6 @@
 import { openDB } from 'idb';
 import CONFIG from '../globals/config';
-import Loading from '../views/components/loading';
+import LoadingHandler from '../utils/loading-handler';
 
 const { DATABASE_NAME, DATABASE_VERSION, OBJECT_STORE_NAME } = CONFIG;
 
@@ -17,10 +17,11 @@ const FavoriteRestaurantIdb = {
     return (await dbPromise).get(OBJECT_STORE_NAME, id);
   },
 
-  async getAllRestaurants(loadingContainer) {
-    loadingContainer.innerHTML = Loading.render();
+  async getAllRestaurants() {
+    const loadingContainer = document.querySelector('.loading-holder');
+    LoadingHandler.init(loadingContainer);
     const restaurants = (await dbPromise).getAll(OBJECT_STORE_NAME);
-    loadingContainer.innerHTML = '';
+    LoadingHandler.isLoadingEnded();
     return restaurants;
   },
 
