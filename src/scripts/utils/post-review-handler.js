@@ -1,4 +1,4 @@
-import RestaurantSource from './restaurant-source';
+import RestaurantSource from '../data/restaurant-source';
 import Alert from '../views/components/alert';
 
 const PostReview = {
@@ -19,12 +19,12 @@ const PostReview = {
 
       try {
         const newReviews = await RestaurantSource.postReview(userReview);
-        Alert.openAlert(alertContainer, alertMessageContainer);
+        Alert.reviewPostedAlert(alertContainer, alertMessageContainer);
         this.renderUpdatedReviews(newReviews);
         this.resetForm(inputName, inputReview);
         Alert.closeAlert(alertContainer);
       } catch (error) {
-        Alert.failureAlert(alertContainer, alertMessageContainer);
+        Alert.reviewNotPostedAlert(alertContainer, alertMessageContainer);
       }
     });
   },

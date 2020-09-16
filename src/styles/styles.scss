@@ -1,4 +1,5 @@
-$primary-color: #fec840;
+$primary-color: #283e4a;
+$secondary-color: #0072b1;
 $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
 * {
@@ -13,11 +14,11 @@ body {
 }
 
 ::selection {
-  background: $primary-color;
+  background: $secondary-color;
   color: white;
 }
 ::-moz-selection {
-  background: $primary-color;
+  background: $secondary-color;
   color: white;
 }
 
@@ -67,7 +68,7 @@ header {
 
           &:hover {
               cursor: pointer;
-              background-color: rgba(0,0,0,0.1);
+              background-color: rgba(255,255,255,0.1);
           }
       }
   }
@@ -111,7 +112,7 @@ header {
 
       &:hover {
         cursor: pointer;
-        background-color: rgba(0,0,0,0.1);
+        background-color: rgba(255,255,255,0.1);
       }
 
       .material-icons {
@@ -180,7 +181,7 @@ header {
 
       &:hover {
         cursor: pointer;
-        background-color: rgba(0,0,0,0.1);
+        background-color: rgba(255,255,255,0.1);
       }
     }
   }
@@ -369,7 +370,7 @@ footer {
       text-align: center;
       margin-top: 0.5rem;
       padding: 0.8rem;
-      color: $primary-color;
+      color: $secondary-color;
 
       &:hover {
         text-decoration: underline;
@@ -411,13 +412,21 @@ footer {
       display: flex;
       align-items: center;
 
+      .fav-icon {
+        color: #f2003c;
+        cursor: pointer;
+        margin-left: 10px;
+        font-size: 2rem;
+        padding: 8px;
+      }
+
       .place-icon {
         color: blue;
         font-size: 1.2rem;
       }
 
       .rate-icon {
-        color: $primary-color;
+        color: gold;
         font-size: 1.2rem;
       }
 
@@ -513,7 +522,7 @@ footer {
 
     .form-name-input, .form-review-input {
       grid-column: 1 / 4;
-      padding: 5px;
+      padding: 7px;
       border-radius: 10px;
       border: 1px solid #ccc;
       width: 100%;
@@ -536,7 +545,7 @@ footer {
 
       &:hover {
         cursor: pointer;
-        opacity: 0.7;
+        opacity: 0.8;
       }
     }
   }
@@ -548,17 +557,17 @@ footer {
 
 .alert-container {
   position: fixed;
-  top: 100px;
-  left: 30%;
-  right: 30%;
+  // top: 100px;
+  bottom: 10%;
+  left: 5%;
   width: fit-content;
-  margin: auto;
+  // margin: auto;
   background-color: $primary-color;
   padding: 10px;
   box-shadow: 0 1px 8px rgba(0,0,0,0.3);
-  border-radius: 20px;
-  transition: transform 0.2s ease-in-out;
-  transform: translate(0, -100vh);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  transform: translate(0, 200vh);
 
   .alert-message {
     color: white;

@@ -1,11 +1,11 @@
 {  
   "name": "Cari Resto PWA",
   "short_name": "Resto PWA",
-  "description": "Complete restaurant catalog ever",
+  "description": "Complete restaurant catalogue ever",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#FEC840",
+  "theme_color": "#0072b1",
   "icons": [
     {
       "src": "/icons/icon-72x72.png",

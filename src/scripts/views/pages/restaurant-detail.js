@@ -27,7 +27,7 @@ const RestaurantDetail = {
 
     const restaurantDetailContent = document.querySelector('.restaurant-detail-content');
     restaurantDetailContent.innerHTML = await RestaurantDetailContent.render(restaurant);
-    await RestaurantDetailContent.afterRender(restaurant.id);
+    await RestaurantDetailContent.afterRender(restaurant);
   },
 
   renderSidenavDesktop(sidenavDesktopContainer) {

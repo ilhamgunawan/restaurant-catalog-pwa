@@ -1,7 +1,7 @@
-// import Card from '../components/card';
+import Card from '../components/card';
 import SidenavDesktop from '../components/sidenav-desktop';
 import SectionNavigateLink from '../components/section-navigate-link';
-import Loading from '../components/loading';
+import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
 
 const Favorite = {
   async render() {
@@ -22,19 +22,34 @@ const Favorite = {
     sidenavDesktop.innerHTML = SidenavDesktop.render();
 
     const loadingHolder = document.querySelector('.loading-holder');
-    loadingHolder.innerHTML = Loading.render();
+    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants(loadingHolder);
 
-    setTimeout(() => {
-      loadingHolder.innerHTML = '';
+    const favoriteLinkContainer = document.querySelector('.favorite-link-container');
+    this.renderSectionLink(favoriteLinkContainer);
 
-      const favoriteLink = document.querySelector('.favorite-link-container');
-      favoriteLink.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
+    this.isFavoriteListEmpty(restaurants);
+  },
 
-      const restaurantList = document.querySelector('.restaurant-list');
-      restaurantList.innerHTML = `
-        <span>Favorite list empty.</span>
-      `;
-    }, 500);
+  isFavoriteListEmpty(restaurants) {
+    const restaurantListContainer = document.querySelector('.restaurant-list');
+    if (restaurants.length === 0) {
+      this.renderEmptyFavoriteList(restaurantListContainer);
+    } else {
+      this.renderRestaurantList(restaurantListContainer, restaurants);
+    }
+  },
+
+  renderRestaurantList(restaurantListContainer, restaurants) {
+    restaurantListContainer.innerHTML = restaurants
+      .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
+  },
+
+  renderEmptyFavoriteList(restaurantListContainer) {
+    restaurantListContainer.innerHTML = '<span>Favorite list empty</span>';
+  },
+
+  renderSectionLink(favoriteLinkContainer) {
+    favoriteLinkContainer.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
   },
 };
 

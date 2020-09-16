@@ -1,8 +1,9 @@
 import Card from '../components/card';
 import SidenavDesktop from '../components/sidenav-desktop';
-import RestaurantSource from '../../data/restaurant-source';
 import SectionNavigateLink from '../components/section-navigate-link';
 import HeroImage from '../components/hero-image';
+import RestaurantSource from '../../data/restaurant-source';
+import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
 
 const Home = {
   async render() {
@@ -32,6 +33,7 @@ const Home = {
 
     const loadingHolder = document.querySelector('.loading-holder');
     const restaurants = await RestaurantSource.getRestaurantList(loadingHolder);
+    const favorites = await FavoriteRestaurantIdb.getAllRestaurants(loadingHolder);
 
     const restaurantLinkContainer = document.querySelector('.restaurant-link-container');
     const favoriteLinkContainer = document.querySelector('.favorite-link-container');
@@ -39,11 +41,7 @@ const Home = {
 
     const restaurantListContainer = document.querySelector('.restaurant-list');
     this.renderRestaurantList(restaurantListContainer, restaurants);
-
-    const favoriteList = document.querySelector('.home-fav-list');
-    favoriteList.innerHTML = `
-      <span>Favorite list empty.</span>
-    `;
+    this.isFavoriteListEmpty(favorites);
   },
 
   renderSidenavDesktop(sidenavDesktopContainer) {
@@ -54,10 +52,23 @@ const Home = {
     heroImageContainer.innerHTML = HeroImage.render();
   },
 
+  isFavoriteListEmpty(favorites) {
+    const favoriteListContainer = document.querySelector('.home-fav-list');
+    if (favorites.length === 0) {
+      this.renderEmptyFavoriteList(favoriteListContainer);
+    } else {
+      this.renderRestaurantList(favoriteListContainer, favorites);
+    }
+  },
+
   renderRestaurantList(restaurantListContainer, restaurants) {
     restaurantListContainer.innerHTML = restaurants
       .slice(0, 8)
       .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
+  },
+
+  renderEmptyFavoriteList(favoriteListContainer) {
+    favoriteListContainer.innerHTML = '<span>Favorite list empty</span>';
   },
 
   renderSectionLink(restaurantLinkContainer, favoriteLinkContainer) {

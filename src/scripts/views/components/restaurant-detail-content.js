@@ -1,5 +1,6 @@
 import CONFIG from '../../globals/config';
-import PostReview from '../../data/post-review-handler';
+import PostReview from '../../utils/post-review-handler';
+import FavoriteButtonHandler from '../../utils/favorite-button-handler';
 import Alert from './alert';
 
 const RestaurantDetailContent = {
@@ -16,7 +17,10 @@ const RestaurantDetailContent = {
     return `
       <img class="restaurant-image" src="${CONFIG.MEDIUM_IMAGE_URL}${pictureId}" alt="restaurant">
       <div class="restaurant-info-wrapper">
-        <h2 class="restaurant-title">${name}</h2>
+        <div class="restaurant-info-container">
+          <h2 class="restaurant-title">${name}</h2>
+          <span class="fav-button-container"></span>
+        </div>
         <div class="restaurant-info-container">
           <i class="material-icons place-icon" aria-label="icon place">place</i>
           <span class="restaurant-info">${address}, ${city}</span>
@@ -78,7 +82,7 @@ const RestaurantDetailContent = {
         </div>`, '');
   },
 
-  async afterRender(restaurantId) {
+  async afterRender(restaurant) {
     const alertPlaceholder = document.querySelector('.alert-placeholder');
     alertPlaceholder.innerHTML = Alert.render();
 
@@ -89,9 +93,17 @@ const RestaurantDetailContent = {
     const alertMessageContainer = document.querySelector('.alert-message');
     await PostReview.post({
       submitButton,
-      restaurantId,
+      restaurantId: restaurant.id,
       inputName,
       inputReview,
+      alertContainer,
+      alertMessageContainer,
+    });
+
+    const favoriteButtonContainer = document.querySelector('.fav-button-container');
+    await FavoriteButtonHandler.init({
+      favoriteButtonContainer,
+      restaurant,
       alertContainer,
       alertMessageContainer,
     });
