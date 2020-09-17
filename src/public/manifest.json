@@ -3,6 +3,7 @@
   "short_name": "Resto PWA",
   "description": "Complete restaurant catalogue ever",
   "start_url": "/index.html",
+  "orientation": "portrait",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0072b1",

@@ -1,17 +1,21 @@
 import 'regenerator-runtime';
+import swRegister from './utils/sw-register';
+
 import '../styles/styles.scss';
 import '../styles/styles-768px.scss';
 import '../styles/styles-1024px.scss';
 import '../styles/styles-1280px.scss';
 import '../styles/styles-1440px.scss';
 import App from './views/app';
-import swRegister from './utils/sw-register';
 
 const app = new App({
-  menuButton: document.querySelector('.open-nav-button'),
-  drawer: document.querySelector('.sidenav-mobile'),
+  skipLinkContainer: document.querySelector('#skip-link-container'),
+  headerContainer: document.querySelector('#header'),
+  sidenavMobileContainer: document.querySelector('#sidenav-mobile'),
+  bottomNavMobileContainer: document.querySelector('#bottom-nav'),
+  footerContainer: document.querySelector('#footer'),
+  initialLoadingContainer: document.querySelector('#initial-loading'),
   content: document.querySelector('#mainContent'),
-  navbarTitle: document.querySelector('.brand-name'),
 });
 
 window.addEventListener('load', () => {

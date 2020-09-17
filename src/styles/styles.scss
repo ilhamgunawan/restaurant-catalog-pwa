@@ -30,6 +30,50 @@ button {
   -webkit-user-select: none;
 }
 
+
+/*
+    Skip to content link
+*/
+
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  text-decoration: none;
+  background-color: $secondary-color;
+  color: white;
+  border: solid white 2px;
+  padding: 10px;
+  transform: translate(0, -100vh);
+
+  &:focus {
+      transform: translate(0, 0);
+  }
+}
+
+
+/*
+    Initial Loading
+*/
+
+.initial-loading-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  background-color: white;
+}
+
+.render-initial-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 /*
     Top Navbar
 */

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-globals */
-
+import 'regenerator-runtime';
 import { setCacheNameDetails, cacheNames, clientsClaim, skipWaiting } from 'workbox-core';
 import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';

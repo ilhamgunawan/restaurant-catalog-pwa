@@ -1,11 +1,13 @@
 const DrawerHandler = {
-  init({ menuButton, drawer }) {
-    menuButton.addEventListener('click', (event) => {
-      this.openDrawer(event, drawer);
+  init() {
+    this._menuButton = document.querySelector('.open-nav-button');
+    this._drawer = document.querySelector('.sidenav-mobile');
+    this._menuButton.addEventListener('click', (event) => {
+      this.openDrawer(event, this._drawer);
     });
 
     document.addEventListener('click', (event) => {
-      if (event.target !== drawer) this.closeDrawer(event, drawer);
+      if (event.target !== this._drawer) this.closeDrawer(event, this._drawer);
     });
   },
 
