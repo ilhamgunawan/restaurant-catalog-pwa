@@ -20,6 +20,10 @@ const RestaurantDetailContent = {
           <span class="fav-button-container"></span>
         </div>
         <div class="restaurant-info-container">
+          <span class="restaurant-category-label">Cuisine: </span>
+          <span class="restaurant-info restaurant-categories"></span>
+        </div>
+        <div class="restaurant-info-container">
           <i class="material-icons place-icon" aria-label="icon place">place</i>
           <span class="restaurant-info">${address}, ${city}</span>
         </div>
@@ -49,18 +53,20 @@ const RestaurantDetailContent = {
         <input class="form-name-input" type="text" id="your-name" name="your-name" placeholder="Your Name">
         <label class="form-review-label" for="your-review">Review:</label>
         <textarea class="form-review-input" id="your-review" name="your-review" placeholder="Your Review"></textarea>
-        <input class="form-submit-button" type="button" value="Post Review">
+        <button class="form-submit-button">Post Review</button>
       </form>
       <div class="alert-placeholder"></div>
     `;
   },
 
   async afterRender(restaurant) {
-    const { id, menus: { foods, drinks }, consumerReviews } = restaurant;
+    const { id, menus: { foods, drinks }, consumerReviews, categories } = restaurant;
 
+    this.renderRestaurantCategories(categories);
     this.renderFoodList(foods);
     this.renderDrinkList(drinks);
     this.renderReviewList(consumerReviews);
+    this.submitFormHandler();
 
     const alertPlaceholder = document.querySelector('.alert-placeholder');
     AlertHandler.init(alertPlaceholder);
@@ -77,6 +83,20 @@ const RestaurantDetailContent = {
 
     const favoriteButtonContainer = document.querySelector('.fav-button-container');
     await FavoriteButtonHandler.init(favoriteButtonContainer, restaurant);
+  },
+
+  submitFormHandler() {
+    const formElement = document.querySelector('.review-form');
+    formElement.addEventListener('submit', (event) => {
+      event.preventDefault();
+    });
+  },
+
+  renderRestaurantCategories(categories) {
+    const categoriesContainer = document.querySelector('.restaurant-categories');
+    categoriesContainer.innerHTML = categories
+      .reduce((accumulator, category) => `${accumulator} ${category.name},`, '')
+      .slice(0, -1);
   },
 
   renderFoodList(foods) {

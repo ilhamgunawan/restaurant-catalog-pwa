@@ -11,6 +11,7 @@ import App from './views/app';
 const app = new App({
   skipLinkContainer: document.querySelector('#skip-link-container'),
   headerContainer: document.querySelector('#header'),
+  sidenavDesktopContainer: document.querySelector('#sidenav-desktop'),
   sidenavMobileContainer: document.querySelector('#sidenav-mobile'),
   bottomNavMobileContainer: document.querySelector('#bottom-nav'),
   footerContainer: document.querySelector('#footer'),

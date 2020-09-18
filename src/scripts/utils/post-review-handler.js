@@ -15,18 +15,42 @@ const PostReview = {
         review: inputReview.value,
       };
 
-      try {
-        const newReviews = await RestaurantSource.postReview(userReview);
-        AlertHandler.reviewPostedAlert();
-        this.renderUpdatedReviews(newReviews);
-        this.resetForm(inputName, inputReview);
-        AlertHandler.closeAlert();
-      } catch (error) {
-        this.resetForm(inputName, inputReview);
-        AlertHandler.reviewNotPostedAlert();
-        AlertHandler.closeAlert();
+      const { name, review } = userReview;
+
+      switch (true) {
+        case this.isStringEmpty(name):
+        case this.isStringOnlyWhiteSpaces(name):
+        case this.isStringEmpty(review):
+        case this.isStringOnlyWhiteSpaces(review):
+          this.cannotPostReview(inputName, inputReview);
+          break;
+        default:
+          this.postReview(userReview, inputName, inputReview);
+          break;
       }
     });
+  },
+
+  isStringEmpty(string) {
+    return !!(string.length === 0);
+  },
+
+  isStringOnlyWhiteSpaces(string) {
+    return !!(/^ *$/.test(string));
+  },
+
+  async postReview(userReview, inputName, inputReview) {
+    const newReviews = await RestaurantSource.postReview(userReview);
+    this.renderUpdatedReviews(newReviews);
+    AlertHandler.reviewPostedAlert();
+    this.resetForm(inputName, inputReview);
+    AlertHandler.closeAlert();
+  },
+
+  cannotPostReview(inputName, inputReview) {
+    AlertHandler.fieldCannotEmptyAlert();
+    this.resetForm(inputName, inputReview);
+    AlertHandler.closeAlert();
   },
 
   renderUpdatedReviews(updatedReviews) {

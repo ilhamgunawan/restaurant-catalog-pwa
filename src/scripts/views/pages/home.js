@@ -3,14 +3,12 @@ import SectionNavigateLink from '../components/section-navigate-link';
 import HeroImage from '../components/hero-image';
 import RestaurantSource from '../../data/restaurant-source';
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
-import SidenavDesktopInitiator from '../../utils/sidenav-desktop-initiator';
 import OfflineConnectionHandler from '../../utils/offline-connection-handler';
 
 const Home = {
   async render() {
     return `
       <div class="home-wrapper">
-        <aside class="sidenav-desktop-container"></aside>
         <section class="hero-wrapper"></section>
         <section class="restaurant-section">
           <div class="restaurant-link-container"></div>
@@ -27,8 +25,8 @@ const Home = {
   },
 
   async afterRender() {
-    SidenavDesktopInitiator.init();
     this.renderHeroImage();
+    this.renderNavbarTitle();
     try {
       const restaurants = await RestaurantSource.getRestaurantList();
       this.renderSectionLink();
@@ -72,6 +70,11 @@ const Home = {
     const favoriteLinkContainer = document.querySelector('.favorite-link-container');
     restaurantLinkContainer.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
     favoriteLinkContainer.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
+  },
+
+  renderNavbarTitle() {
+    const navbarTitleContainer = document.querySelector('.brand-name');
+    navbarTitleContainer.innerHTML = 'Cari Résto / home';
   },
 };
 

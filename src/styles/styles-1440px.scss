@@ -10,4 +10,12 @@
   .restaurant-detail-wrapper {
     grid-template-columns: 1fr 5fr;
   }
+
+  .hero-wrapper, 
+  .restaurant-section, 
+  .loading-holder, 
+  .restaurant-detail-content,
+  .offline-indicator-container {
+    grid-column: 2 / 5;
+  }
 }

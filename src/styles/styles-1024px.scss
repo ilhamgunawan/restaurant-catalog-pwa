@@ -1,6 +1,26 @@
 @media screen and (min-width: 1024px) {
 
   /*
+    Main Content
+  */
+
+  .home-wrapper, 
+  .restaurant-catalogue-wrapper, 
+  .favorite-wrapper, 
+  .restaurant-detail-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+
+  .hero-wrapper, 
+  .restaurant-section, 
+  .loading-holder, 
+  .restaurant-detail-content,
+  .offline-indicator-container {
+    grid-column: 2 / 4;
+  }
+
+  /*
     Restaurant Section
   */
 

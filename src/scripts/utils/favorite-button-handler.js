@@ -12,14 +12,14 @@ const FavoriteButtonHandler = {
 
   async renderButton() {
     const { id } = this._restaurant;
-    if (await this.isRestaurantExit(id)) {
+    if (await this.isRestaurantExist(id)) {
       this.renderFavoriteButton();
     } else {
       this.renderFavoriteBorderButton();
     }
   },
 
-  async isRestaurantExit(id) {
+  async isRestaurantExist(id) {
     const restaurant = await FavoriteRestaurantIdb.getRestaurant(id);
     return !!restaurant;
   },

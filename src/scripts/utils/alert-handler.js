@@ -12,8 +12,8 @@ const AlertHandler = {
     this._alertContainer.classList.toggle('alert-open');
   },
 
-  reviewNotPostedAlert() {
-    this._alertMessageContainer.innerHTML = 'Review not posted';
+  fieldCannotEmptyAlert() {
+    this._alertMessageContainer.innerHTML = 'Field cannot be empty';
     this._alertContainer.classList.toggle('alert-open');
   },
 

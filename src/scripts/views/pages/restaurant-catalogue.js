@@ -1,14 +1,12 @@
 import Card from '../components/card';
 import RestaurantSource from '../../data/restaurant-source';
 import SectionNavigateLink from '../components/section-navigate-link';
-import SidenavDesktopInitiator from '../../utils/sidenav-desktop-initiator';
 import OfflineConnectionHandler from '../../utils/offline-connection-handler';
 
 const RestaurantCatalogue = {
   async render() {
     return `
       <div class="restaurant-catalogue-wrapper">
-        <aside class="sidenav-desktop-container"></aside>
         <section class="restaurant-section">
           <div class="restaurant-link-container"></div>
           <section class="restaurant-list"></section>
@@ -20,7 +18,6 @@ const RestaurantCatalogue = {
   },
 
   async afterRender() {
-    SidenavDesktopInitiator.init();
     this.renderSectionLink();
     try {
       const restaurants = await RestaurantSource.getRestaurantList();

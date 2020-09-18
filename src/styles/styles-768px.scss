@@ -58,6 +58,15 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
 
   /*
+    Loading indicator
+  */
+
+  .loading-holder {
+    grid-column: 2 / 3;
+  }
+
+
+  /*
     Main Content
   */
 
@@ -73,21 +82,23 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     grid-template-columns: 1fr 3fr;
   }
 
+  .restaurant-catalogue-wrapper,
+  .favorite-wrapper {
+    margin-top: 65px;
+  }
+
 
   /*
     Sidenav Desktop
   */
 
   .sidenav-desktop-container {
-    grid-row: 1 / 99;
-
     .sidenav-desktop-wrapper {
       display: flex;
       flex-direction: column;
       margin: 15px 0 0 10px;
-      position: sticky;
-      top: 60px;
-      border-radius: 20px;
+      position: fixed;
+      top: 50px;
   
       .sidenav-desktop-link {
         text-decoration: none;
@@ -114,6 +125,8 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   */
 
   .hero-wrapper {
+    grid-column: 2 / 3;
+
     .hero-image {
       height: 300px;
 
@@ -137,6 +150,8 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   */
 
   .restaurant-section {
+    grid-column: 2 / 3;
+
     .restaurant-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -153,6 +168,7 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   */
 
   .restaurant-detail-content {
+    grid-column: 2 / 3;
     margin-top: 20px;
     padding: 0 20px;
 
@@ -210,11 +226,20 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    padding: 10px;
     
     .footer-text {
       color: #121212;
       font-size: 0.8rem;
     }  
+  }
+
+
+  /*
+    Offline indicator
+  */
+
+  .offline-indicator-container {
+    grid-column: 2 / 3;
   }
 }

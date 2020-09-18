@@ -1,13 +1,11 @@
 import Card from '../components/card';
 import SectionNavigateLink from '../components/section-navigate-link';
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
-import SidenavDesktopInitiator from '../../utils/sidenav-desktop-initiator';
 
 const Favorite = {
   async render() {
     return `
       <div class="favorite-wrapper">
-        <aside class="sidenav-desktop-container"></aside>
         <section class="restaurant-section">
           <div class="favorite-link-container"></div>
           <section class="restaurant-list"></section>
@@ -18,7 +16,6 @@ const Favorite = {
   },
 
   async afterRender() {
-    SidenavDesktopInitiator.init();
     const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
     this.renderSectionLink();
     this.isFavoriteListEmpty(restaurants);

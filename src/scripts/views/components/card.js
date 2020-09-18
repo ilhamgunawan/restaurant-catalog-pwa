@@ -18,7 +18,7 @@ const Card = {
             </div>
           </div>
           <p class="card-description">
-            ${description.substring(0, 150)}...
+            ${description.substring(0, 100)}...
           </p>
           <a class="card-readmore" href="#/detail/${id}">Read more</a>
         </div>

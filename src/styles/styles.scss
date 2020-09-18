@@ -10,7 +10,7 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
 body {
   position: relative;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 ::selection {
@@ -85,7 +85,6 @@ header {
   display: flex;
   align-items: center;
   background-color: $primary-color;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
   
   .brand-container {
     width: 100%;
@@ -206,7 +205,6 @@ header {
   display: flex;
   align-items: center;
   background-color: $primary-color;
-  box-shadow: 0 -1.5px 8px rgba(0, 0, 0, 0.2);
 
   .bottom-nav-wrapper {
     width: 100%;
@@ -362,10 +360,13 @@ footer {
   border: 1px solid #cdcdcd;
   border-radius: 20px;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  transition: $transition-standard;
 
   .card-image {
-    width: 100%;
+    min-width: 100%;
+    min-height: 150px;
+    background-color: #ddd;
     user-select: none;
   }
 
@@ -462,6 +463,8 @@ footer {
         margin-left: 10px;
         font-size: 2rem;
         padding: 8px;
+        background-color: transparent;
+        border: none;
       }
 
       .place-icon {
@@ -476,6 +479,10 @@ footer {
 
       .restaurant-info {
         margin-left: 8px;
+        font-size: 0.9rem;
+      }
+
+      .restaurant-category-label {
         font-size: 0.9rem;
       }
     }
@@ -602,11 +609,9 @@ footer {
 
 .alert-container {
   position: fixed;
-  // top: 100px;
   bottom: 10%;
   left: 5%;
   width: fit-content;
-  // margin: auto;
   background-color: $primary-color;
   padding: 10px;
   box-shadow: 0 1px 8px rgba(0,0,0,0.3);

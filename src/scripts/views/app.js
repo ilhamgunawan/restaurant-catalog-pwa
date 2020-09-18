@@ -5,6 +5,7 @@ import UrlParser from '../routes/url-parser';
 
 import SkipLink from './components/skip-link';
 import Header from './components/header';
+import SidenavDesktop from './components/sidenav-desktop';
 import SidenavMobile from './components/sidenav-mobile';
 import BottomNavMobile from './components/bottom-nav-mobile';
 import Footer from './components/footer';
@@ -13,6 +14,7 @@ class App {
   constructor({
     skipLinkContainer,
     headerContainer,
+    sidenavDesktopContainer,
     sidenavMobileContainer,
     bottomNavMobileContainer,
     footerContainer,
@@ -20,6 +22,7 @@ class App {
     content }) {
     this._skipLinkContainer = skipLinkContainer;
     this._headerContainer = headerContainer;
+    this._sidenavDesktopContainer = sidenavDesktopContainer;
     this._sidenavMobileContainer = sidenavMobileContainer;
     this._bottomNavMobileContainer = bottomNavMobileContainer;
     this._footerContainer = footerContainer;
@@ -32,6 +35,7 @@ class App {
   initialAppShell() {
     this._skipLinkContainer.innerHTML = SkipLink.render();
     this._headerContainer.innerHTML = Header.render();
+    this._sidenavDesktopContainer.innerHTML = SidenavDesktop.render();
     this._sidenavMobileContainer.innerHTML = SidenavMobile.render();
     this._bottomNavMobileContainer.innerHTML = BottomNavMobile.render();
     this._footerContainer.innerHTML = Footer.render();
