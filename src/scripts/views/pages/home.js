@@ -62,7 +62,7 @@ const Home = {
   },
 
   renderEmptyFavoriteList(favoriteListContainer) {
-    favoriteListContainer.innerHTML = '<span>Favorite list empty</span>';
+    favoriteListContainer.innerHTML = '<span class="favorite-empty">Favorite list empty</span>';
   },
 
   renderSectionLink() {

@@ -1,6 +1,22 @@
 @media screen and (min-width: 1440px) {
   
   /*
+    Sidenav Desktop
+  */
+
+  .sidenav-desktop-container {
+    .sidenav-desktop-wrapper {
+      margin: 20px 0 0 20px;
+  
+      .sidenav-desktop-link {
+        padding: 18px;
+        width: 200px;
+      }
+    }
+  }
+
+
+  /*
       Main Content
   */
 

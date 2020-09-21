@@ -13,24 +13,26 @@ const RestaurantDetailContent = {
     rating,
   }) {
     return `
-      <img class="restaurant-image" src="${CONFIG.MEDIUM_IMAGE_URL}/${pictureId}" alt="restaurant">
-      <div class="restaurant-info-wrapper">
-        <div class="restaurant-info-container">
-          <h2 class="restaurant-title">${name}</h2>
-          <span class="fav-button-container"></span>
-        </div>
-        <div class="restaurant-info-container">
-          <span class="restaurant-category-label">Cuisine: </span>
-          <span class="restaurant-info restaurant-categories"></span>
-        </div>
-        <div class="restaurant-info-container">
-          <i class="material-icons place-icon" aria-label="icon place">place</i>
-          <span class="restaurant-info">${address}, ${city}</span>
-        </div>
-        <div class="restaurant-info-container">
-          <i class="material-icons rate-icon" aria-label="icon rating">star_rate</i>
-          <span class="restaurant-info">${rating}</span>
-        </div>
+      <div class="restaurant-header">
+        <img class="restaurant-image" src="${CONFIG.MEDIUM_IMAGE_URL}/${pictureId}" alt="restaurant">
+        <div class="restaurant-info-wrapper">
+          <div class="restaurant-info-container">
+            <h2 class="restaurant-title">${name}</h2>
+            <span class="fav-button-container"></span>
+          </div>
+          <div class="restaurant-info-container">
+            <span class="restaurant-category-label">Cuisine: </span>
+            <span class="restaurant-info restaurant-categories"></span>
+          </div>
+          <div class="restaurant-info-container">
+            <i class="material-icons place-icon" aria-label="icon place">place</i>
+            <span class="restaurant-info">${address}, ${city}</span>
+          </div>
+          <div class="restaurant-info-container">
+            <i class="material-icons rate-icon" aria-label="icon rating">star_rate</i>
+            <span class="restaurant-info">${rating}</span>
+          </div>
+        </div> 
       </div>
       <div class="menus-wrapper">
         <div class="menus-container">
@@ -47,8 +49,8 @@ const RestaurantDetailContent = {
         <h3 class="review-title">Community Reviews</h3>
         <div class="review-list"></div>
       </div>
+      <h3 class="form-title">Post Review</h3>
       <form class="review-form">
-        <h3 class="form-title">Post Review</h3>
         <label class="form-name-label" for="your-name">Name:</label>
         <input class="form-name-input" type="text" id="your-name" name="your-name" placeholder="Your Name">
         <label class="form-review-label" for="your-review">Review:</label>

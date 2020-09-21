@@ -1,11 +1,18 @@
 $primary-color: #283e4a;
 $secondary-color: #0072b1;
+$foreground-color: #F2F3F5;
+$black-custom-color: #1c1e21;
 $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+$box-shadow-narrow: 0 0.2px 0.1px rgba(0, 0, 0, 0.013), 0 0.3px 0.3px rgba(0, 0, 0, 0.024), 0 0.3px 0.5px rgba(0, 0, 0, 0.033), 0 0.4px 1.1px rgba(0, 0, 0, 0.043), 0 3px 3px rgba(0, 0, 0, 0.07);
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  background-color: $foreground-color;
 }
 
 body {
@@ -64,7 +71,7 @@ button {
   height: 100%;
   width: 100%;
   z-index: 99;
-  background-color: white;
+  background-color: $foreground-color;
 }
 
 .render-initial-loading {
@@ -84,14 +91,15 @@ header {
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: $primary-color;
+  background-color: white;
+  box-shadow: $box-shadow-narrow;
   
   .brand-container {
     width: 100%;
 
       .brand-name {
           text-align: center;
-          color: white;
+          color: cornflowerblue;
           font-size: 1rem;
           font-weight: 600;
       }
@@ -103,15 +111,14 @@ header {
 
       .menu-button {
           font-size: 2rem;
-          color: white;
-          background-color: $primary-color;
+          color: #666;
+          background-color: white;
           border: none;
-          transition: $transition-standard;
           padding: 0.5rem;
 
           &:hover {
               cursor: pointer;
-              background-color: rgba(255,255,255,0.1);
+              background-color:#eaeaea;
           }
       }
   }
@@ -136,8 +143,8 @@ header {
   z-index: 1;
   height: 100%;
   width: 60%;
-  background-color: $primary-color;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
   transform: translate(-100%, 0);
 
@@ -149,13 +156,12 @@ header {
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: white;
+      color: $black-custom-color;
       padding: 0.5rem 1.5rem;
-      transition: $transition-standard;
 
       &:hover {
         cursor: pointer;
-        background-color: rgba(255,255,255,0.1);
+        background-color: #eaeaea;
       }
 
       .material-icons {
@@ -204,7 +210,8 @@ header {
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: $primary-color;
+  background-color: white;
+  box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.1);
 
   .bottom-nav-wrapper {
     width: 100%;
@@ -214,16 +221,15 @@ header {
 
     .bottom-nav-button {
       font-size: 2rem;
-      color: white;
+      color: $black-custom-color;
       text-align: center;
       text-decoration: none;
-      transition: $transition-standard;
       padding: 0.5rem;
       width: 100%;
 
       &:hover {
         cursor: pointer;
-        background-color: rgba(255,255,255,0.1);
+        background-color: #eaeaea;
       }
     }
   }
@@ -262,7 +268,9 @@ footer {
 */
 
 #mainContent {
+  min-height: 90vh;
   margin-top: 45px;
+  background-color: $foreground-color;
 }
 
 .home-wrapper, 
@@ -336,8 +344,8 @@ footer {
 
     .section-title {
       text-align: center;
-      font-weight: 400;
-      font-size: 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
       margin-left: 5px;
     }
   }
@@ -348,6 +356,12 @@ footer {
     flex-direction: column;
     align-items: center;
   }
+
+  .favorite-empty {
+    color: grey;
+    margin: auto;
+    grid-column: 1 / 99;
+  }
 }
 
 
@@ -357,11 +371,12 @@ footer {
 
 .card-wrapper {
   width: 85%;
-  border: 1px solid #cdcdcd;
-  border-radius: 20px;
   overflow: hidden;
   margin-bottom: 30px;
   transition: $transition-standard;
+  border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+  box-shadow: 0 0.2px 0.1px rgba(0, 0, 0, 0.013), 0 0.3px 0.3px rgba(0, 0, 0, 0.024), 0 0.3px 0.5px rgba(0, 0, 0, 0.033), 0 0.4px 1.1px rgba(0, 0, 0, 0.043), 0 3px 3px rgba(0, 0, 0, 0.07);
+  background-color: white;
 
   .card-image {
     min-width: 100%;
@@ -375,7 +390,7 @@ footer {
 
     .card-title {
       font-size: 1rem;
-      font-weight: 400;
+      font-weight: 500;
     }
 
     .card-info-wrapper {
@@ -415,7 +430,7 @@ footer {
       text-align: center;
       margin-top: 0.5rem;
       padding: 0.8rem;
-      color: $secondary-color;
+      color: cornflowerblue;
 
       &:hover {
         text-decoration: underline;
@@ -436,22 +451,36 @@ footer {
   line-height: 1.8;
 
   .restaurant-title {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1.2rem;
   }
 
   .restaurant-image {
     width: 100%;
-    margin: 10px auto;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    margin: 0 auto;
+  }
+
+  .restaurant-header,
+  .menus-wrapper,
+  .restaurant-description {
+    background-color: white;
+    border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+    box-shadow: 0 0.2px 0.1px rgba(0, 0, 0, 0.013), 0 0.3px 0.3px rgba(0, 0, 0, 0.024), 0 0.3px 0.5px rgba(0, 0, 0, 0.033), 0 0.4px 1.1px rgba(0, 0, 0, 0.043), 0 3px 3px rgba(0, 0, 0, 0.07);
+    padding: 15px;
+  }
+
+  .restaurant-header {
+    margin-bottom: 10px;
+    padding: 0;
+    overflow: hidden;
   }
 
   .restaurant-info-wrapper {
-    margin: 10px 0;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     min-height: 100px;
+    padding: 0 15px 15px 15px;
 
     .restaurant-info-container {
       display: flex;
@@ -491,7 +520,7 @@ footer {
   .menus-wrapper {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
     .menus-container {
       display: flex;
@@ -534,13 +563,14 @@ footer {
       display: flex;
       flex-direction: column;
       margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 20px;
       padding: 10px;
-      background-color: mintcream;
+      background-color: white;
+      border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+      box-shadow: 0 0.2px 0.1px rgba(0, 0, 0, 0.013), 0 0.3px 0.3px rgba(0, 0, 0, 0.024), 0 0.3px 0.5px rgba(0, 0, 0, 0.033), 0 0.4px 1.1px rgba(0, 0, 0, 0.043), 0 3px 3px rgba(0, 0, 0, 0.07);
 
       .review-name {
-        color: dodgerblue;
+        color: cornflowerblue;
+        font-weight: 500;
       }
 
       .review-date {
@@ -550,21 +580,25 @@ footer {
       }
 
       .review-content {
-        font-style: italic;
         font-size: 0.8rem;
       }
     }
+  }
+
+  .form-title {
+    font-size: 1rem;
+    margin: 5px 0;
   }
 
   .review-form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 5px;
+    padding: 15px;
+    background-color: white;
+    border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+    box-shadow: 0 0.2px 0.1px rgba(0, 0, 0, 0.013), 0 0.3px 0.3px rgba(0, 0, 0, 0.024), 0 0.3px 0.5px rgba(0, 0, 0, 0.033), 0 0.4px 1.1px rgba(0, 0, 0, 0.043), 0 3px 3px rgba(0, 0, 0, 0.07);
 
-    .form-title {
-      grid-column: 1 / 4;
-      font-size: 1rem;
-    }
 
     .form-name-label, .form-review-label {
       grid-column-start: 1;
@@ -574,10 +608,11 @@ footer {
     .form-name-input, .form-review-input {
       grid-column: 1 / 4;
       padding: 7px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
+      border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+      border: none;
       width: 100%;
       font-family: 'Open Sans', sans-serif;
+      background-color: #f3f3f3;
     }
 
     .form-review-input {
@@ -585,18 +620,17 @@ footer {
     }
 
     .form-submit-button {
-      grid-column-start: 3;
-      grid-row-start: 7;
-      background-color: $primary-color;
+      grid-row-start: 9;
+      grid-column: 1 / 4;
+      background-color: rgb(100, 149, 237);
       color: white;
       border: none;
       padding: 15px;
-      border-radius: 20px;
-      transition: $transition-standard;
+      border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
 
       &:hover {
         cursor: pointer;
-        opacity: 0.8;
+        background-color: rgba(100, 149, 237, 0.9);
       }
     }
   }
@@ -612,10 +646,10 @@ footer {
   bottom: 10%;
   left: 5%;
   width: fit-content;
-  background-color: $primary-color;
+  background-color: cornflowerblue;
   padding: 10px;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.3);
-  border-radius: 10px;
+  box-shadow: $box-shadow-narrow;
+  border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
   transition: transform 0.3s ease-in-out;
   transform: translate(0, 200vh);
 

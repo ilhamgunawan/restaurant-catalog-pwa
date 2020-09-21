@@ -36,7 +36,7 @@ const Favorite = {
   },
 
   renderEmptyFavoriteList(restaurantListContainer) {
-    restaurantListContainer.innerHTML = '<span>Favorite list empty</span>';
+    restaurantListContainer.innerHTML = '<span class="favorite-empty">Favorite list empty</span>';
   },
 
   renderSectionLink() {
