@@ -2,6 +2,8 @@ import Card from '../components/card';
 import RestaurantSource from '../../data/restaurant-source';
 import SectionNavigateLink from '../components/section-navigate-link';
 import OfflineConnectionHandler from '../../utils/offline-connection-handler';
+import CardSkeletonInitiator from '../../utils/card-skeleton-initiator';
+import HeaderTitleInitiator from '../../utils/header-title-initiator';
 
 const RestaurantCatalogue = {
   async render() {
@@ -11,27 +13,31 @@ const RestaurantCatalogue = {
           <div class="restaurant-link-container"></div>
           <section class="restaurant-list"></section>
         </section>       
-        <div class="loading-holder"></div>
         <div class="offline-indicator-container"></div>
       </div>
     `;
   },
 
   async afterRender() {
+    HeaderTitleInitiator.init('Restaurant Catalogue');
     this.renderSectionLink();
+
+    const restaurantListContainer = document.querySelector('.restaurant-list');
+    CardSkeletonInitiator.init(restaurantListContainer);
+
     try {
       const restaurants = await RestaurantSource.getRestaurantList();
-      this.renderRestaurantList(restaurants);
+      this.renderRestaurantList(restaurants, restaurantListContainer);
     } catch (error) {
       const offlineContainer = document.querySelector('.offline-indicator-container');
       offlineContainer.innerHTML = OfflineConnectionHandler.init();
     }
   },
 
-  renderRestaurantList(restaurants) {
-    const restaurantListContainer = document.querySelector('.restaurant-list');
-    restaurantListContainer.innerHTML = restaurants
+  renderRestaurantList(restaurants, restaurantListContainer) {
+    const html = restaurants
       .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
+    restaurantListContainer.innerHTML = html;
   },
 
   renderSectionLink() {

@@ -33,23 +33,13 @@
 
     .restaurant-reviews-container {
       grid-column: 2 / 3;
-      grid-row: 1 / 99;
+      grid-row: 1 / 8;
       padding: 10px 10px 0 40px;
     }
 
     .review-form {
       grid-column: 1 / 2;
       grid-row-start: 5;
-    }
-  }
-
-  /*
-    Card
-  */
-
-  .card-wrapper {
-    .card-image {
-      height: 200px;
     }
   }
 }

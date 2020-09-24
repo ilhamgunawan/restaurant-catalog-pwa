@@ -14,7 +14,7 @@ const RestaurantDetailContent = {
   }) {
     return `
       <div class="restaurant-header">
-        <img class="restaurant-image" src="${CONFIG.MEDIUM_IMAGE_URL}/${pictureId}" alt="restaurant">
+        <img class="restaurant-image lazyload" data-src="${CONFIG.MEDIUM_IMAGE_URL}/${pictureId}" alt="restaurant">
         <div class="restaurant-info-wrapper">
           <div class="restaurant-info-container">
             <h2 class="restaurant-title">${name}</h2>

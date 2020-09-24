@@ -5,7 +5,7 @@ const Header = {
         <button class="material-icons menu-button open-nav-button">menu</button>
       </div>
       <div class="brand-container">
-        <h1 class="brand-name">Cari Résto / home</h1>
+        <h1 class="brand-name">Cari Résto / </h1>
       </div>
       <aside class="topnav-container">
         <a href="#/home" class="topnav-link" title="Home">

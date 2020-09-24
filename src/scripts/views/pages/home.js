@@ -4,6 +4,8 @@ import HeroImage from '../components/hero-image';
 import RestaurantSource from '../../data/restaurant-source';
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
 import OfflineConnectionHandler from '../../utils/offline-connection-handler';
+import CardSkeletonInitiator from '../../utils/card-skeleton-initiator';
+import HeaderTitleInitiator from '../../utils/header-title-initiator';
 
 const Home = {
   async render() {
@@ -14,8 +16,7 @@ const Home = {
           <div class="restaurant-link-container"></div>
           <section class="restaurant-list"></section>
           <div class="offline-indicator-container"></div>
-        </section>   
-        <div class="loading-holder"></div>        
+        </section>     
         <section class="restaurant-section home-fav-section">
           <div class="favorite-link-container"></div>
           <section class="restaurant-list home-fav-list"></section>
@@ -25,20 +26,27 @@ const Home = {
   },
 
   async afterRender() {
+    HeaderTitleInitiator.init('Home');
     this.renderHeroImage();
     this.renderNavbarTitle();
+    this.renderSectionLink();
+
+    const restaurantListContainer = document.querySelector('.restaurant-list');
+    const favoriteListContainer = document.querySelector('.home-fav-list');
+    CardSkeletonInitiator.initHome(restaurantListContainer, favoriteListContainer);
+
     try {
       const restaurants = await RestaurantSource.getRestaurantList();
       this.renderSectionLink();
-      const restaurantListContainer = document.querySelector('.restaurant-list');
       this.renderRestaurantList(restaurantListContainer, restaurants);
     } catch (error) {
       this.renderSectionLink();
       const offlineContainer = document.querySelector('.offline-indicator-container');
       offlineContainer.innerHTML = OfflineConnectionHandler.init();
     }
+
     const favorites = await FavoriteRestaurantIdb.getAllRestaurants();
-    this.isFavoriteListEmpty(favorites);
+    this.isFavoriteListEmpty(favorites, favoriteListContainer);
   },
 
   renderHeroImage() {
@@ -46,8 +54,7 @@ const Home = {
     heroImageContainer.innerHTML = HeroImage.render();
   },
 
-  isFavoriteListEmpty(favorites) {
-    const favoriteListContainer = document.querySelector('.home-fav-list');
+  isFavoriteListEmpty(favorites, favoriteListContainer) {
     if (favorites.length === 0) {
       this.renderEmptyFavoriteList(favoriteListContainer);
     } else {
@@ -56,9 +63,10 @@ const Home = {
   },
 
   renderRestaurantList(restaurantListContainer, restaurants) {
-    restaurantListContainer.innerHTML = restaurants
+    const html = restaurants
       .slice(0, 8)
       .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
+    restaurantListContainer.innerHTML = html;
   },
 
   renderEmptyFavoriteList(favoriteListContainer) {
@@ -74,7 +82,7 @@ const Home = {
 
   renderNavbarTitle() {
     const navbarTitleContainer = document.querySelector('.brand-name');
-    navbarTitleContainer.innerHTML = 'Cari Résto / home';
+    navbarTitleContainer.innerHTML = 'Cari Résto / Home';
   },
 };
 

@@ -1,8 +1,10 @@
-$primary-color: #283e4a;
+$primary-color: #2d696b;
 $secondary-color: #0072b1;
 $foreground-color: #F2F3F5;
+$skeleton-color: #dfdfdf;
 $black-custom-color: #1c1e21;
 $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+$border-radius-smooth: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
 $box-shadow-narrow: 0 0.2px 0.1px rgba(0, 0, 0, 0.013), 0 0.3px 0.3px rgba(0, 0, 0, 0.024), 0 0.3px 0.5px rgba(0, 0, 0, 0.033), 0 0.4px 1.1px rgba(0, 0, 0, 0.043), 0 3px 3px rgba(0, 0, 0, 0.07);
 
 * {
@@ -21,16 +23,17 @@ body {
 }
 
 ::selection {
-  background: $secondary-color;
+  background: $primary-color;
   color: white;
 }
 ::-moz-selection {
-  background: $secondary-color;
+  background: $primary-color;
   color: white;
 }
 
 .material-icons, 
 .brand-name,
+.hero-image,
 a, 
 button {
   user-select: none;
@@ -71,7 +74,7 @@ button {
   height: 100%;
   width: 100%;
   z-index: 99;
-  background-color: $foreground-color;
+  background-color: white;
 }
 
 .render-initial-loading {
@@ -88,6 +91,7 @@ button {
 header {
   position: fixed;
   top: 0;
+  z-index: 98;
   width: 100%;
   display: flex;
   align-items: center;
@@ -99,7 +103,7 @@ header {
 
       .brand-name {
           text-align: center;
-          color: cornflowerblue;
+          color: $primary-color;
           font-size: 1rem;
           font-weight: 600;
       }
@@ -134,18 +138,17 @@ header {
 */
 
 .sidenav-mobile {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 99;
   height: 100%;
   width: 60%;
   background-color: white;
   box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
   transform: translate(-100%, 0);
 
   .sidenav-wrapper {
@@ -157,7 +160,7 @@ header {
       align-items: center;
       text-decoration: none;
       color: $black-custom-color;
-      padding: 0.5rem 1.5rem;
+      padding: 0.8rem 1.5rem;
 
       &:hover {
         cursor: pointer;
@@ -165,12 +168,12 @@ header {
       }
 
       .material-icons {
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
 
       .sidenav-link-name {
         font-weight: 400;
-        font-size: 1.1rem;
+        font-size: 1rem;
         margin-left: 15px;
       }
     }
@@ -187,6 +190,7 @@ header {
 }
 
 .open {
+  display: flex;
   transform: translate(0, 0);
 }
 
@@ -287,31 +291,44 @@ footer {
 */
 
 .hero-wrapper {
-  .hero-image {
-    background-size: cover;
+  position: relative;
+  height: 240px;
+
+  picture {
     width: 100%;
-    height: 200px;
+    height: inherit;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: inherit;
+    position: relative;
+    object-fit: fill;
+  }
 
-    .hero-overlay {
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-      .hero-text-wrapper {
-        width: fit-content;
+    .hero-text-wrapper {
+      width: fit-content;
 
-        .hero-text {
-          display: block;
-          text-align: center;
-          color: white;
-          user-select: none;
-          font-size: 1rem;
-          font-weight: 300;
-        }
+      .hero-text {
+        display: block;
+        text-align: center;
+        color: white;
+        user-select: none;
+        font-size: 1rem;
+        font-weight: 300;
       }
     }
   }
@@ -358,7 +375,7 @@ footer {
   }
 
   .favorite-empty {
-    color: grey;
+    color: #666;
     margin: auto;
     grid-column: 1 / 99;
   }
@@ -379,10 +396,14 @@ footer {
   background-color: white;
 
   .card-image {
-    min-width: 100%;
-    min-height: 150px;
-    background-color: #ddd;
-    user-select: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .card-image-loading {
+    width: 100%;
+    height: 175px;
+    background-color: $skeleton-color;
   }
 
   .card-content {
@@ -391,6 +412,13 @@ footer {
     .card-title {
       font-size: 1rem;
       font-weight: 500;
+    }
+
+    .card-title-loading {
+      width: 100%;
+      height: 1rem;
+      background-color: $skeleton-color;
+      border-radius: $border-radius-smooth;
     }
 
     .card-info-wrapper {
@@ -402,6 +430,13 @@ footer {
         display: flex;
         align-items: center;
 
+        .card-info-loading {
+          height: 1rem;
+          width: 100px;
+          background-color: $skeleton-color;
+          border-radius: $border-radius-smooth;
+        }
+
         .place-icon {
           font-size: 1rem;
           color: blue;
@@ -409,7 +444,7 @@ footer {
 
         .rate-icon {
           font-size: 1rem;
-          color: gold;
+          color: #9e0000;
         }
 
         .card-rating, .card-city {
@@ -424,17 +459,32 @@ footer {
       font-weight: 300;
     }
 
+    .card-description-loading {
+      width: 100%;
+      height: 48px;
+      background-color: $skeleton-color;
+      border-radius: $border-radius-smooth;
+    }
+
     .card-readmore {
       display: block;
       text-decoration: none;
       text-align: center;
       margin-top: 0.5rem;
       padding: 0.8rem;
-      color: cornflowerblue;
+      color: $primary-color;
 
       &:hover {
         text-decoration: underline;
       }
+    }
+
+    .card-readmore-loading {
+      width: 100%;
+      height: 44px;
+      margin-top: 0.5rem;
+      background-color: $skeleton-color;
+      border-radius: $border-radius-smooth;
     }
   }
 }
@@ -502,7 +552,7 @@ footer {
       }
 
       .rate-icon {
-        color: gold;
+        color: #9e0000;
         font-size: 1.2rem;
       }
 
@@ -527,7 +577,7 @@ footer {
       margin-bottom: 10px;
 
       .food-icon {
-        color: red;
+        color: #9e0000;
         font-size: 1.2rem;
         line-height: 1.5;
       }
@@ -569,7 +619,7 @@ footer {
       box-shadow: 0 0.2px 0.1px rgba(0, 0, 0, 0.013), 0 0.3px 0.3px rgba(0, 0, 0, 0.024), 0 0.3px 0.5px rgba(0, 0, 0, 0.033), 0 0.4px 1.1px rgba(0, 0, 0, 0.043), 0 3px 3px rgba(0, 0, 0, 0.07);
 
       .review-name {
-        color: cornflowerblue;
+        color: $primary-color;
         font-weight: 500;
       }
 
@@ -581,6 +631,7 @@ footer {
 
       .review-content {
         font-size: 0.8rem;
+        overflow: auto;
       }
     }
   }
@@ -622,7 +673,7 @@ footer {
     .form-submit-button {
       grid-row-start: 9;
       grid-column: 1 / 4;
-      background-color: rgb(100, 149, 237);
+      background-color: $primary-color;
       color: white;
       border: none;
       padding: 15px;
@@ -630,7 +681,6 @@ footer {
 
       &:hover {
         cursor: pointer;
-        background-color: rgba(100, 149, 237, 0.9);
       }
     }
   }
@@ -646,7 +696,7 @@ footer {
   bottom: 10%;
   left: 5%;
   width: fit-content;
-  background-color: cornflowerblue;
+  background-color: $primary-color;
   padding: 10px;
   box-shadow: $box-shadow-narrow;
   border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
@@ -672,4 +722,5 @@ footer {
   flex-direction: column;
   align-items: center;
   padding: 10px 0;
+  color: #666;
 }

@@ -1,5 +1,4 @@
 import DrawerHandler from '../utils/drawer-handler';
-import InitialLoadingInitiator from '../utils/initial-loading-initiator';
 import routes from '../routes/routes';
 import UrlParser from '../routes/url-parser';
 
@@ -18,7 +17,6 @@ class App {
     sidenavMobileContainer,
     bottomNavMobileContainer,
     footerContainer,
-    initialLoadingContainer,
     content }) {
     this._skipLinkContainer = skipLinkContainer;
     this._headerContainer = headerContainer;
@@ -26,9 +24,7 @@ class App {
     this._sidenavMobileContainer = sidenavMobileContainer;
     this._bottomNavMobileContainer = bottomNavMobileContainer;
     this._footerContainer = footerContainer;
-    this._initialLoadingContainer = initialLoadingContainer;
     this._content = content;
-    InitialLoadingInitiator.init(this._initialLoadingContainer);
     this.initialAppShell();
   }
 
@@ -45,11 +41,7 @@ class App {
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
-    const pageTitle = `Cari Résto / ${url.replace('/', '')}`;
-    const navbarTitle = document.querySelector('.brand-name');
-    navbarTitle.innerHTML = pageTitle;
     this._content.innerHTML = await page.render();
-    InitialLoadingInitiator.unmountInitialLoading(this._initialLoadingContainer);
     await page.afterRender();
   }
 }

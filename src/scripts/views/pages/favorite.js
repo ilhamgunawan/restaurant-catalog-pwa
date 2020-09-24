@@ -1,6 +1,8 @@
 import Card from '../components/card';
 import SectionNavigateLink from '../components/section-navigate-link';
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
+import CardSkeletonInitiator from '../../utils/card-skeleton-initiator';
+import HeaderTitleInitiator from '../../utils/header-title-initiator';
 
 const Favorite = {
   async render() {
@@ -16,13 +18,17 @@ const Favorite = {
   },
 
   async afterRender() {
-    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
+    HeaderTitleInitiator.init('Favorite List');
     this.renderSectionLink();
-    this.isFavoriteListEmpty(restaurants);
+
+    const restaurantListContainer = document.querySelector('.restaurant-list');
+    CardSkeletonInitiator.init(restaurantListContainer);
+
+    const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
+    this.isFavoriteListEmpty(restaurants, restaurantListContainer);
   },
 
-  isFavoriteListEmpty(restaurants) {
-    const restaurantListContainer = document.querySelector('.restaurant-list');
+  isFavoriteListEmpty(restaurants, restaurantListContainer) {
     if (restaurants.length === 0) {
       this.renderEmptyFavoriteList(restaurantListContainer);
     } else {
@@ -31,8 +37,9 @@ const Favorite = {
   },
 
   renderRestaurantList(restaurantListContainer, restaurants) {
-    restaurantListContainer.innerHTML = restaurants
+    const html = restaurants
       .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
+    restaurantListContainer.innerHTML = html;
   },
 
   renderEmptyFavoriteList(restaurantListContainer) {

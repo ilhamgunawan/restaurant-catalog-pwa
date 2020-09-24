@@ -1,6 +1,5 @@
 import { openDB } from 'idb';
 import CONFIG from '../globals/config';
-import LoadingHandler from '../utils/loading-handler';
 
 const { DATABASE_NAME, DATABASE_VERSION, OBJECT_STORE_NAME } = CONFIG;
 
@@ -18,10 +17,7 @@ const FavoriteRestaurantIdb = {
   },
 
   async getAllRestaurants() {
-    const loadingContainer = document.querySelector('.loading-holder');
-    LoadingHandler.init(loadingContainer);
     const restaurants = (await dbPromise).getAll(OBJECT_STORE_NAME);
-    LoadingHandler.isLoadingEnded();
     return restaurants;
   },
 

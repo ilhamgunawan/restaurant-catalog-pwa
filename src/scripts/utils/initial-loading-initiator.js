@@ -11,7 +11,7 @@ const InitialLoadingInitiator = {
   },
 
   unmountInitialLoading(initialLoadingContainer) {
-    setTimeout(() => initialLoadingContainer.classList.remove('render-initial-loading'), 300);
+    initialLoadingContainer.classList.remove('render-initial-loading');
   },
 };
 

@@ -20,6 +20,18 @@
     grid-column: 2 / 4;
   }
 
+
+  /*
+    Hero Section
+  */
+
+  .hero-wrapper {
+    .hero-image {
+      object-fit: cover;
+    }
+  }
+
+  
   /*
     Restaurant Section
   */

@@ -8,5 +8,5 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
   },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
 });
