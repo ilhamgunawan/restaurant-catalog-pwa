@@ -20,8 +20,11 @@ const SidenavMobile = {
         </a>
       </nav>
       <footer class="sidenav-footer">
-        <span class="footer-text">Copyright &copy; 2020</span>
-        <span class="footer-text">Cari Résto</span>
+        <span class="footer-text">
+          &copy; 2020
+          <span class="footer-title">Cari Résto</span>
+        </span>
+        <a href="https://linkedin.com/in/ilhammrg" class="footer-link" target="_blank" rel="noreferrer" title="About Us">About Us</a>
       </footer>
     `;
   },

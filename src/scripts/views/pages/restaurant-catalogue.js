@@ -1,16 +1,15 @@
 import Card from '../components/card';
 import RestaurantSource from '../../data/restaurant-source';
-import SectionNavigateLink from '../components/section-navigate-link';
 import OfflineConnectionHandler from '../../utils/offline-connection-handler';
 import CardSkeletonInitiator from '../../utils/card-skeleton-initiator';
 import HeaderTitleInitiator from '../../utils/header-title-initiator';
+import HeaderNavActiveHandler from '../../utils/header-nav-active-handler';
 
 const RestaurantCatalogue = {
   async render() {
     return `
       <div class="restaurant-catalogue-wrapper">
         <section class="restaurant-section">
-          <div class="restaurant-link-container"></div>
           <section class="restaurant-list"></section>
         </section>       
         <div class="offline-indicator-container"></div>
@@ -20,7 +19,7 @@ const RestaurantCatalogue = {
 
   async afterRender() {
     HeaderTitleInitiator.init('Restaurant Catalogue');
-    this.renderSectionLink();
+    HeaderNavActiveHandler.toggleActiveNav(2);
 
     const restaurantListContainer = document.querySelector('.restaurant-list');
     CardSkeletonInitiator.init(restaurantListContainer);
@@ -38,11 +37,6 @@ const RestaurantCatalogue = {
     const html = restaurants
       .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
     restaurantListContainer.innerHTML = html;
-  },
-
-  renderSectionLink() {
-    const restaurantLinkContainer = document.querySelector('.restaurant-link-container');
-    restaurantLinkContainer.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
   },
 };
 

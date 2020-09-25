@@ -1,0 +1,12 @@
+@media screen and (min-width: 1600px) {
+  /*
+      Main Content
+  */
+
+  .home-wrapper, 
+  .restaurant-catalogue-wrapper, 
+  .favorite-wrapper, 
+  .restaurant-detail-wrapper {
+    grid-template-columns: 1fr 6fr;
+  }
+}

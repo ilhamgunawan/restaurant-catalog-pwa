@@ -1,5 +1,8 @@
+$accent-primary-color: #03dac5;
 $primary-color: #2d696b;
-$primary-dark-color: #333;
+$primary-dark-color: #212121;
+$secondary-dark-color: #313131;
+$tertiary-dark-color: #515151;
 $primary-light-color: #f5f5f5;
 $secondary-color: #0072b1;
 $black-custom-color: #1c1e21;
@@ -31,21 +34,32 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     .topnav-container {
       display: flex;
 
+      &:hover {
+        .topnav-link {
+          color: #aaa;
+        }
+      }
+
       .topnav-link {
         display: flex;
         align-items: center;
         text-decoration: none;
         color: $primary-light-color;
         padding: 1rem 1.2rem;
+        border: none;
   
         &:hover {
           cursor: pointer;
-          opacity: 0.7;
+          color: $accent-primary-color;
         }
   
         .material-icons {
           font-size: 1.2rem;
         }
+      }
+
+      .topnav-link.active-nav {
+        border-bottom: 4px solid white;
       }
     }
   }
@@ -74,7 +88,8 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   */
 
   #mainContent {
-    min-height: 90vh;
+    min-height: 93vh;
+    position: relative;
   }
 
   .home-wrapper, 
@@ -97,21 +112,28 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
       margin-top: 5px;
       margin-left: 5px;
       position: fixed;
+      z-index: 2;
       top: 50px;
       left: 0;
       width: 180px;
+
+      .sidenav-desktop-title {
+        padding: 10px 0 10px 15px;
+        color: $tertiary-dark-color;
+        font-weight: 600;
+      }
   
       .sidenav-desktop-link {
         text-decoration: none;
         display: flex;
         align-items: center;
-        color: black;
+        color: $secondary-dark-color;
         padding: 15px;
         border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
         
         &:hover {
-          color: $primary-light-color;
-          background-color: $primary-dark-color;
+          color: $primary-dark-color;
+          background-color: #ddd;
         }
   
         .sidenav-desktop-link-name {
@@ -241,15 +263,27 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid #ddd;
     
     .footer-text {
-      color: #121212;
-      font-size: 0.8rem;
+      color: $primary-dark-color;
+      font-size: 0.9rem;
     }  
 
     .footer-title {
       font-family: 'Permanent Marker', cursive;
+      font-size: 1.1rem;
+    }
+
+    .footer-link {
+      color: $primary-dark-color;
+
+      &:hover {
+        color: $accent-primary-color;
+      }
     }
   }
 
@@ -257,8 +291,16 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   /*
     Offline indicator
   */
-
   .offline-indicator-container {
     grid-column: 2 / 3;
+  }
+
+
+  /*
+    Empty favorite button
+  */
+  .empty-favorite-button {
+    bottom: 5%;
+    right: 5%;
   }
 }

@@ -90,7 +90,6 @@ module.exports = {
       skipWaiting: true,
       clientsClaim: true,
       swDest: 'sw.js',
-      navigateFallback: '/index.html',
       runtimeCaching: [
         {
           urlPattern: new RegExp('https://dicoding-restaurant-api.el.r.appspot.com/list'),

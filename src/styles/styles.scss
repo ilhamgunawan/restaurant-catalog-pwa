@@ -1,5 +1,7 @@
-$primary-color: #2d696b;
-$primary-dark-color: #333;
+$accent-primary-color: #03dac5;
+$primary-dark-color: #212121;
+$secondary-dark-color: #313131;
+$tertiary-dark-color: #515151;
 $primary-light-color: #f5f5f5;
 $secondary-color: #0072b1;
 $foreground-color: #F2F3F5;
@@ -8,6 +10,7 @@ $black-custom-color: #1c1e21;
 $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 $border-radius-smooth: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
 $box-shadow-narrow: 0 0.2px 0.1px rgba(0, 0, 0, 0.013), 0 0.3px 0.3px rgba(0, 0, 0, 0.024), 0 0.3px 0.5px rgba(0, 0, 0, 0.033), 0 0.4px 1.1px rgba(0, 0, 0, 0.043), 0 3px 3px rgba(0, 0, 0, 0.07);
+$box-shadow-deep: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
 
 * {
   margin: 0;
@@ -25,11 +28,11 @@ body {
 }
 
 ::selection {
-  background: $primary-color;
+  background: $accent-primary-color;
   color: white;
 }
 ::-moz-selection {
-  background: $primary-color;
+  background: $accent-primary-color;
   color: white;
 }
 
@@ -98,7 +101,7 @@ header {
   display: flex;
   align-items: center;
   background-color: $primary-dark-color;
-  box-shadow: $box-shadow-narrow;
+  box-shadow: $box-shadow-deep;
   
   .brand-container {
     width: 100%;
@@ -186,9 +189,23 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
+    color: $tertiary-dark-color;
     padding: 1rem;
     font-size: 0.9rem;
+    border-top: 1px solid #ddd;
+
+    .footer-title {
+      font-family: 'Permanent Marker', cursive;
+      font-weight: 600;
+    }
+
+    .footer-link {
+      color: $tertiary-dark-color;
+
+      &:hover {
+        color: $accent-primary-color;
+      }
+    }
   }
 }
 
@@ -231,6 +248,8 @@ header {
       color: $black-custom-color;
       text-align: center;
       text-decoration: none;
+      background-color: inherit;
+      border: none;
       padding: 0.5rem;
       width: 100%;
 
@@ -238,6 +257,11 @@ header {
         cursor: pointer;
         background-color: #eaeaea;
       }
+    }
+
+    .bottom-nav-button.active-nav {
+      border-top: 4px solid $primary-dark-color;
+      background-color: #eaeaea;
     }
   }
 }
@@ -288,6 +312,11 @@ footer {
   margin: auto;
 }
 
+.restaurant-catalogue-wrapper,
+.favorite-wrapper {
+  margin-top: 4rem;
+}
+
 
 /*
     Hero Section
@@ -316,7 +345,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -328,7 +357,7 @@ footer {
       .hero-text {
         display: block;
         text-align: center;
-        color: white;
+        color: $primary-light-color;
         user-select: none;
         font-size: 1rem;
         font-weight: 300;
@@ -386,6 +415,12 @@ footer {
     color: #666;
     margin: auto;
     grid-column: 1 / 99;
+  }
+}
+
+.favorite-wrapper {
+  .favorite-empty.material-icons {
+    margin-top: 2rem;
   }
 }
 
@@ -482,11 +517,8 @@ footer {
       text-align: center;
       margin-top: 0.5rem;
       padding: 0.8rem;
-      color: $primary-color;
-
-      &:hover {
-        text-decoration: underline;
-      }
+      color: $primary-dark-color;
+      text-decoration: underline;
     }
 
     .card-readmore-loading {
@@ -569,14 +601,16 @@ footer {
         font-size: 1.2rem;
       }
 
+      .restaurant-category-label {
+        color: orange;
+        font-size: 1.2rem;
+      }
+
       .restaurant-info {
         margin-left: 8px;
         font-size: 0.9rem;
       }
 
-      .restaurant-category-label {
-        font-size: 0.9rem;
-      }
     }
   }
 
@@ -590,7 +624,7 @@ footer {
       margin-bottom: 10px;
 
       .food-icon {
-        color: #9e0000;
+        color: purple;
         font-size: 1.2rem;
         line-height: 1.5;
       }
@@ -632,14 +666,21 @@ footer {
       box-shadow: 0 0.2px 0.1px rgba(0, 0, 0, 0.013), 0 0.3px 0.3px rgba(0, 0, 0, 0.024), 0 0.3px 0.5px rgba(0, 0, 0, 0.033), 0 0.4px 1.1px rgba(0, 0, 0, 0.043), 0 3px 3px rgba(0, 0, 0, 0.07);
 
       .review-name {
-        color: $primary-color;
+        color: $primary-dark-color;
         font-weight: 500;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .material-icons {
+          margin-right: 5px;
+        }
       }
 
       .review-date {
         font-weight: 300;
         font-size: 0.7rem;
-        color: #666;
+        color: $secondary-dark-color;
       }
 
       .review-content {
@@ -655,6 +696,7 @@ footer {
   }
 
   .review-form {
+    font-family: 'Inter', sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 5px;
@@ -675,8 +717,8 @@ footer {
       border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
       border: none;
       width: 100%;
-      font-family: 'Open Sans', sans-serif;
       background-color: #f3f3f3;
+      font-family: 'Inter', sans-serif;
     }
 
     .form-review-input {
@@ -686,11 +728,13 @@ footer {
     .form-submit-button {
       grid-row-start: 9;
       grid-column: 1 / 4;
-      background-color: $primary-color;
-      color: white;
+      background-color: $accent-primary-color;
+      color: $primary-dark-color;
       border: none;
       padding: 15px;
       border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
 
       &:hover {
         cursor: pointer;
@@ -709,7 +753,8 @@ footer {
   bottom: 10%;
   left: 5%;
   width: fit-content;
-  background-color: $primary-color;
+  background-color: $tertiary-dark-color;
+  opacity: 0.9;
   padding: 10px;
   box-shadow: $box-shadow-narrow;
   border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
@@ -717,7 +762,7 @@ footer {
   transform: translate(0, 200vh);
 
   .alert-message {
-    color: white;
+    color: $primary-light-color;
   }
 }
 
@@ -736,4 +781,29 @@ footer {
   align-items: center;
   padding: 10px 0;
   color: #666;
+}
+
+
+/*
+    Empty favorite button
+*/
+
+.empty-favorite-button {
+  position: fixed;
+  z-index: 2;
+  right: 10%;
+  bottom: 10%;
+  background-color: $accent-primary-color;
+  color: $secondary-dark-color;
+  border: none;
+  padding: 10px;
+  font-size: 2.5rem;
+  border-radius: 100%;
+  box-shadow: $box-shadow-deep;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #9e0000;
+    color: $primary-light-color;
+  }
 }

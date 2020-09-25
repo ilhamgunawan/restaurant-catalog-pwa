@@ -21,7 +21,7 @@ const RestaurantDetailContent = {
             <span class="fav-button-container"></span>
           </div>
           <div class="restaurant-info-container">
-            <span class="restaurant-category-label">Cuisine: </span>
+            <i class="material-icons restaurant-category-label" aria-label="icon category">local_offer</i>
             <span class="restaurant-info restaurant-categories"></span>
           </div>
           <div class="restaurant-info-container">
@@ -121,9 +121,12 @@ const RestaurantDetailContent = {
       .reduce((accumulator, consumerReview) => `
         ${accumulator}
         <div class="review-wrapper">
-          <span class="review-name">${consumerReview.name}</span>
+          <span class="review-name">
+            <i class="material-icons">person</i>
+            <span>${consumerReview.name || 'Unknown'}</span>
+          </span>
           <span class="review-date">${consumerReview.date}</span>
-          <p class="review-content">"${consumerReview.review}"</p>
+          <p class="review-content">"${consumerReview.review || 'No message to display.'}"</p>
         </div>`, '');
   },
 };

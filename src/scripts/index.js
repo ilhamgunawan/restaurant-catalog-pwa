@@ -9,6 +9,7 @@ import '../styles/styles-768px.scss';
 import '../styles/styles-1024px.scss';
 import '../styles/styles-1280px.scss';
 import '../styles/styles-1440px.scss';
+import '../styles/styles-1600px.scss';
 import App from './views/app';
 
 const app = new App({

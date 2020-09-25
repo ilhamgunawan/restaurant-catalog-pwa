@@ -1,31 +1,39 @@
 import Card from '../components/card';
-import SectionNavigateLink from '../components/section-navigate-link';
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
 import CardSkeletonInitiator from '../../utils/card-skeleton-initiator';
 import HeaderTitleInitiator from '../../utils/header-title-initiator';
+import HeaderNavActiveHandler from '../../utils/header-nav-active-handler';
+import FavoriteEmptyIndicator from '../components/favorite-empty-indicator';
+import EmptyFavoriteHandler from '../../utils/empty-favorite-handler';
+import AlertHandler from '../../utils/alert-handler';
 
 const Favorite = {
   async render() {
     return `
       <div class="favorite-wrapper">
         <section class="restaurant-section">
-          <div class="favorite-link-container"></div>
           <section class="restaurant-list"></section>
         </section>        
-        <div class="loading-holder"></div>
+        <div class="empty-button-container"></div>
+        <div class="alert-placeholder"></div>
       </div>
     `;
   },
 
   async afterRender() {
     HeaderTitleInitiator.init('Favorite List');
-    this.renderSectionLink();
+    HeaderNavActiveHandler.toggleActiveNav(3);
+
+    const alertPlaceholder = document.querySelector('.alert-placeholder');
+    AlertHandler.init(alertPlaceholder);
 
     const restaurantListContainer = document.querySelector('.restaurant-list');
     CardSkeletonInitiator.init(restaurantListContainer);
 
     const restaurants = await FavoriteRestaurantIdb.getAllRestaurants();
     this.isFavoriteListEmpty(restaurants, restaurantListContainer);
+
+    EmptyFavoriteHandler.init(restaurants);
   },
 
   isFavoriteListEmpty(restaurants, restaurantListContainer) {
@@ -43,12 +51,7 @@ const Favorite = {
   },
 
   renderEmptyFavoriteList(restaurantListContainer) {
-    restaurantListContainer.innerHTML = '<span class="favorite-empty">Favorite list empty</span>';
-  },
-
-  renderSectionLink() {
-    const favoriteLinkContainer = document.querySelector('.favorite-link-container');
-    favoriteLinkContainer.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
+    restaurantListContainer.innerHTML = FavoriteEmptyIndicator.render();
   },
 };
 

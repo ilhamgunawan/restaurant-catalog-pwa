@@ -6,6 +6,8 @@ import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
 import OfflineConnectionHandler from '../../utils/offline-connection-handler';
 import CardSkeletonInitiator from '../../utils/card-skeleton-initiator';
 import HeaderTitleInitiator from '../../utils/header-title-initiator';
+import HeaderNavActiveHandler from '../../utils/header-nav-active-handler';
+import FavoriteEmptyIndicator from '../components/favorite-empty-indicator';
 
 const Home = {
   async render() {
@@ -27,6 +29,7 @@ const Home = {
 
   async afterRender() {
     HeaderTitleInitiator.init('Home');
+    HeaderNavActiveHandler.toggleActiveNav(1);
     this.renderHeroImage();
     this.renderNavbarTitle();
     this.renderSectionLink();
@@ -70,7 +73,7 @@ const Home = {
   },
 
   renderEmptyFavoriteList(favoriteListContainer) {
-    favoriteListContainer.innerHTML = '<span class="favorite-empty">Favorite list empty</span>';
+    favoriteListContainer.innerHTML = FavoriteEmptyIndicator.render();
   },
 
   renderSectionLink() {

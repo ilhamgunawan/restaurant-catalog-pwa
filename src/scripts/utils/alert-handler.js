@@ -27,6 +27,16 @@ const AlertHandler = {
     this._alertContainer.classList.toggle('alert-open');
   },
 
+  emptyFavoriteAlert() {
+    this._alertMessageContainer.innerHTML = 'Favorites removed';
+    this._alertContainer.classList.toggle('alert-open');
+  },
+
+  emptyFavoriteCanceled() {
+    this._alertMessageContainer.innerHTML = 'Canceled';
+    this._alertContainer.classList.toggle('alert-open');
+  },
+
   closeAlert() {
     setTimeout(() => {
       this._alertContainer.classList.remove('alert-open');
