@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
 const path = require('path');
 
 module.exports = {
@@ -106,6 +106,6 @@ module.exports = {
         },
       ],
     }),
-    new BundleAnalyzerPlugin.BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin.BundleAnalyzerPlugin(),
   ],
 };

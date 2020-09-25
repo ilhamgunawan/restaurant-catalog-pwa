@@ -1,11 +1,22 @@
 @media screen and (min-width: 1280px) {
 
   /*
+    Sidenav Desktop
+  */
+
+  .sidenav-desktop-container {
+    .sidenav-desktop-wrapper {
+      width: 230px;
+    }
+  }
+
+
+  /*
     Main Content
   */
 
   #mainContent {
-    min-height: 90vh;
+    min-height: 91vh;
   }
 
 
@@ -34,7 +45,7 @@
     .restaurant-reviews-container {
       grid-column: 2 / 3;
       grid-row: 1 / 8;
-      padding: 10px 10px 0 40px;
+      padding: 0 10px 0 40px;
     }
 
     .review-form {

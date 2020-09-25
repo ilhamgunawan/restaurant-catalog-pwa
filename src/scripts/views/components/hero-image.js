@@ -16,7 +16,7 @@ const HeroImage = {
      </picture>
       <div class="hero-overlay">
         <div class="hero-text-wrapper">
-          <span class="hero-text">Cari Résto</span>
+          <span class="hero-text hero-title">Cari Résto</span>
           <span class="hero-text">Platform to find best restaurant in town</span>
         </div>
       </div>
