@@ -2,7 +2,7 @@ const SidenavDesktop = {
   render() {
     return `
       <div class="sidenav-desktop-wrapper">
-        <span class="sidenav-desktop-title">MENUS</span>
+        <span class="sidenav-desktop-title">MENU</span>
         <a href="#/home" class="sidenav-desktop-link" title="Home">
           <span class="material-icons">home</span>
           <span class="sidenav-desktop-link-name">Home</span>

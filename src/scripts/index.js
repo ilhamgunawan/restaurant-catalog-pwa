@@ -1,9 +1,7 @@
 import 'regenerator-runtime';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
-import swRegister from './utils/sw-register';
 
-import '../styles/import-font.scss';
 import '../styles/styles.scss';
 import '../styles/styles-768px.scss';
 import '../styles/styles-1024px.scss';
@@ -11,6 +9,8 @@ import '../styles/styles-1280px.scss';
 import '../styles/styles-1440px.scss';
 import '../styles/styles-1600px.scss';
 import App from './views/app';
+
+import swRegister from './utils/sw-register';
 
 const app = new App({
   skipLinkContainer: document.querySelector('#skip-link-container'),
@@ -23,11 +23,11 @@ const app = new App({
   content: document.querySelector('#mainContent'),
 });
 
-window.addEventListener('load', () => {
-  swRegister();
+window.addEventListener('hashchange', () => {
   app.renderPage();
 });
 
-window.addEventListener('hashchange', () => {
+window.addEventListener('DOMContentLoaded', () => {
   app.renderPage();
+  swRegister();
 });

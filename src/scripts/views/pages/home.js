@@ -28,10 +28,9 @@ const Home = {
   },
 
   async afterRender() {
+    this.renderHeroImage();
     HeaderTitleInitiator.init('Home');
     HeaderNavActiveHandler.toggleActiveNav(1);
-    this.renderHeroImage();
-    this.renderNavbarTitle();
     this.renderSectionLink();
 
     const restaurantListContainer = document.querySelector('.restaurant-list');
@@ -40,10 +39,8 @@ const Home = {
 
     try {
       const restaurants = await RestaurantSource.getRestaurantList();
-      this.renderSectionLink();
       this.renderRestaurantList(restaurantListContainer, restaurants);
     } catch (error) {
-      this.renderSectionLink();
       const offlineContainer = document.querySelector('.offline-indicator-container');
       offlineContainer.innerHTML = OfflineConnectionHandler.init();
     }
@@ -67,7 +64,7 @@ const Home = {
 
   renderRestaurantList(restaurantListContainer, restaurants) {
     const html = restaurants
-      .slice(0, 8)
+      .slice(0, 10)
       .reduce((accumulator, restaurant) => accumulator + Card.render(restaurant), '');
     restaurantListContainer.innerHTML = html;
   },
@@ -81,11 +78,6 @@ const Home = {
     const favoriteLinkContainer = document.querySelector('.favorite-link-container');
     restaurantLinkContainer.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
     favoriteLinkContainer.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
-  },
-
-  renderNavbarTitle() {
-    const navbarTitleContainer = document.querySelector('.brand-name');
-    navbarTitleContainer.innerHTML = 'Cari Résto / Home';
   },
 };
 

@@ -2,7 +2,15 @@ const CardSkeleton = {
   render() {
     return `
       <div class="card-wrapper">
-        <img class="card-image-loading" src="images/placeholder.png" alt="restaurant-image">
+        <picture>
+          <source type="image/webp" srcset="images/placeholder.webp">
+          <source type="image/png" srcset="images/placeholder.png">
+          <img 
+            class="card-image-loading" 
+            src="images/placeholder.png" 
+            alt="restaurant-image"
+          >
+        </picture>
         <div class="card-content">
           <img class="card-title-loading" src="images/placeholder.png" alt="restaurant-name">
           <div class="card-info-wrapper">

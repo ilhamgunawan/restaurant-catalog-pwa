@@ -34,9 +34,12 @@ const EmptyFavoriteHandler = {
     switch (userCoice) {
       case true:
         await this._userClickOk();
-        return;
-      default:
+        break;
+      case false:
         this._userClickCancel();
+        break;
+      default:
+        break;
     }
   },
 

@@ -30,10 +30,7 @@ const FavoriteRestaurantIdb = {
   },
 
   async deleteAllRestaurants() {
-    const restaurantIDs = (await dbPromise).getAllKeys(OBJECT_STORE_NAME);
-    (await restaurantIDs).forEach(async (id) => {
-      await this.deleteRestaurant(id);
-    });
+    return (await dbPromise).clear(OBJECT_STORE_NAME);
   },
 };
 

@@ -31,4 +31,14 @@
   .offline-indicator-container {
     grid-column: 2 / 5;
   }
+
+
+  /*
+    Restaurant Section
+  */
+  .restaurant-section {
+    .restaurant-list {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
 }
