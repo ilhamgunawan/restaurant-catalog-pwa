@@ -40,8 +40,12 @@ body {
 .material-icons, 
 .brand-name,
 .hero-image,
+.favorite-empty,
+.sidenav-desktop-title,
+.offline-wrapper,
 a, 
-button {
+button,
+footer {
   user-select: none;
   -webkit-user-select: none;
 }
@@ -771,6 +775,7 @@ footer {
   position: fixed;
   bottom: 10%;
   left: 5%;
+  z-index: 100;
   width: fit-content;
   background-color: $tertiary-dark-color;
   opacity: 0.9;
@@ -809,7 +814,7 @@ footer {
 
 .empty-favorite-button {
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   right: 10%;
   bottom: 10%;
   background-color: $accent-primary-color;
