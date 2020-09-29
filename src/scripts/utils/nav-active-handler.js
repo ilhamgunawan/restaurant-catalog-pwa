@@ -1,4 +1,4 @@
-const HeaderNavActiveHandler = {
+const NavActiveHandler = {
   toggleActiveNav(activeNavPosition) {
     this._resetActiveNav();
     const activeHeaderNav = document.querySelector(`.topnav-link:nth-child(${activeNavPosition})`);
@@ -37,4 +37,4 @@ const HeaderNavActiveHandler = {
   },
 };
 
-export default HeaderNavActiveHandler;
+export default NavActiveHandler;

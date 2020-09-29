@@ -2,7 +2,7 @@ import Card from '../components/card';
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
 import CardSkeletonInitiator from '../../utils/card-skeleton-initiator';
 import HeaderTitleInitiator from '../../utils/header-title-initiator';
-import HeaderNavActiveHandler from '../../utils/header-nav-active-handler';
+import NavActiveHandler from '../../utils/nav-active-handler';
 import FavoriteEmptyIndicator from '../components/favorite-empty-indicator';
 import EmptyFavoriteHandler from '../../utils/empty-favorite-handler';
 import AlertHandler from '../../utils/alert-handler';
@@ -22,7 +22,7 @@ const Favorite = {
 
   async afterRender() {
     HeaderTitleInitiator.init('Favorite List');
-    HeaderNavActiveHandler.toggleActiveNav(3);
+    NavActiveHandler.toggleActiveNav(3);
 
     const alertPlaceholder = document.querySelector('.alert-placeholder');
     AlertHandler.init(alertPlaceholder);

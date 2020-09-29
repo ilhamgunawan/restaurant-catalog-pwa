@@ -3,7 +3,7 @@ import RestaurantSource from '../../data/restaurant-source';
 import UrlParser from '../../routes/url-parser';
 import OfflineConnectionHandler from '../../utils/offline-connection-handler';
 import HeaderTitleInitiator from '../../utils/header-title-initiator';
-import HeaderNavActiveHandler from '../../utils/header-nav-active-handler';
+import NavActiveHandler from '../../utils/nav-active-handler';
 
 const RestaurantDetail = {
   async render() {
@@ -24,7 +24,7 @@ const RestaurantDetail = {
   async isRestaurantDataReceived(restaurant) {
     if (restaurant.id) {
       HeaderTitleInitiator.init(restaurant.name);
-      HeaderNavActiveHandler.toggleActiveNav(2);
+      NavActiveHandler.toggleActiveNav(2);
       const restaurantDetailContent = document.querySelector('.restaurant-detail-content');
       restaurantDetailContent.innerHTML = await RestaurantDetailContent.render(restaurant);
       await RestaurantDetailContent.afterRender(restaurant);

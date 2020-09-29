@@ -47,6 +47,7 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
         color: $primary-light-color;
         padding: 1rem 1.2rem;
         border: none;
+        transition: $transition-standard;
   
         &:hover {
           cursor: pointer;
@@ -59,7 +60,8 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
       }
 
       .topnav-link.active-nav {
-        border-bottom: 4px solid white;
+        border-bottom: 4px solid $accent-primary-color;
+        color: $accent-primary-color;
       }
     }
   }
@@ -117,6 +119,7 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
       width: 180px;
       border-right: 1px solid #ddd;
       height: 100%;
+      background-color: $foreground-color;
 
       .sidenav-desktop-title {
         padding: 10px 0 10px 15px;
@@ -145,6 +148,7 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
       .sidenav-desktop-link.active-nav {
         color: $primary-dark-color;
         background-color: #ddd;
+        border-right: 4px solid $primary-dark-color;
       }
     }
   }

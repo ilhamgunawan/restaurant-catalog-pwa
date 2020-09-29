@@ -2,6 +2,7 @@ import CONFIG from '../../globals/config';
 import FavoriteButtonHandler from '../../utils/favorite-button-handler';
 import PostReview from '../../utils/post-review-handler';
 import AlertHandler from '../../utils/alert-handler';
+import ReviewList from './review-list';
 
 const RestaurantDetailContent = {
   async render({
@@ -119,17 +120,7 @@ const RestaurantDetailContent = {
 
   renderReviewList(consumerReviews) {
     const reviewListContainer = document.querySelector('.review-list');
-    reviewListContainer.innerHTML = consumerReviews
-      .reduce((accumulator, consumerReview) => `
-        ${accumulator}
-        <div class="review-wrapper">
-          <span class="review-name">
-            <i class="material-icons">person</i>
-            <span>${consumerReview.name || 'Unknown'}</span>
-          </span>
-          <span class="review-date">${consumerReview.date}</span>
-          <p class="review-content">"${consumerReview.review || 'No message to display.'}"</p>
-        </div>`, '');
+    reviewListContainer.innerHTML = ReviewList.render(consumerReviews);
   },
 };
 

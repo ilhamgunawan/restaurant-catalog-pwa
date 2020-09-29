@@ -3,7 +3,7 @@ import RestaurantSource from '../../data/restaurant-source';
 import OfflineConnectionHandler from '../../utils/offline-connection-handler';
 import CardSkeletonInitiator from '../../utils/card-skeleton-initiator';
 import HeaderTitleInitiator from '../../utils/header-title-initiator';
-import HeaderNavActiveHandler from '../../utils/header-nav-active-handler';
+import NavActiveHandler from '../../utils/nav-active-handler';
 
 const RestaurantCatalogue = {
   async render() {
@@ -19,7 +19,7 @@ const RestaurantCatalogue = {
 
   async afterRender() {
     HeaderTitleInitiator.init('Restaurant Catalogue');
-    HeaderNavActiveHandler.toggleActiveNav(2);
+    NavActiveHandler.toggleActiveNav(2);
 
     const restaurantListContainer = document.querySelector('.restaurant-list');
     CardSkeletonInitiator.init(restaurantListContainer);
