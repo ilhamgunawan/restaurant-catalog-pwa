@@ -418,9 +418,28 @@ footer {
   }
 
   .favorite-empty {
-    color: #666;
     margin: auto;
     grid-column: 1 / 99;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .liked-empty-image {
+      width: 50%;
+    }
+
+    .liked-empty-text {
+      color: #666;
+      margin-top: 1rem;
+      display: flex;
+
+      .material-icons {
+        margin-left: 5px;
+        font-size: 22px;
+      }
+    }    
   }
 }
 
@@ -726,18 +745,12 @@ footer {
     font-family: 'Inter', sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 5px;
+    grid-gap: 10px;
     padding: 15px;
     background-color: white;
     border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
     box-shadow: 0 0.2px 0.1px rgba(0, 0, 0, 0.013), 0 0.3px 0.3px rgba(0, 0, 0, 0.024), 0 0.3px 0.5px rgba(0, 0, 0, 0.033), 0 0.4px 1.1px rgba(0, 0, 0, 0.043), 0 3px 3px rgba(0, 0, 0, 0.07);
     border: 0.3px solid #ddd;
-
-
-    .form-name-label, .form-review-label {
-      grid-column-start: 1;
-      font-size: 0.8rem;
-    }
 
     .form-name-input, .form-review-input {
       grid-column: 1 / 4;
@@ -751,10 +764,10 @@ footer {
 
     .form-review-input {
       max-width: 100%;
+      resize: none;
     }
 
     .form-submit-button {
-      grid-row-start: 9;
       grid-column: 1 / 4;
       background-color: $accent-primary-color;
       color: $primary-dark-color;
@@ -808,8 +821,14 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 0;
+  justify-content: center;
   color: #666;
+  height: 80vh;
+
+  .offline-image {
+    width: 250px;
+    margin-bottom: 25px;
+  }
 }
 
 

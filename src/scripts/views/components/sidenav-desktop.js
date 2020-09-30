@@ -7,17 +7,17 @@ const SidenavDesktop = {
           <span class="material-icons">home</span>
           <span class="sidenav-desktop-link-name">Home</span>
         </a>
-        <a href="#/restaurants" class="sidenav-desktop-link" title="Restaurant Catalogue">
-          <span class="material-icons">library_books</span>
-          <span class="sidenav-desktop-link-name">Résto</span>
+        <a href="#/restaurants" class="sidenav-desktop-link" title="Restaurant catalogue">
+          <span class="material-icons">local_dining</span>
+          <span class="sidenav-desktop-link-name">Résto catalogue</span>
         </a>
-        <a href="#/favorite" class="sidenav-desktop-link" title="Favorite">
-          <span class="material-icons">favorite</span>
-          <span class="sidenav-desktop-link-name">Favorite</span>
+        <a href="#/liked-restaurants" class="sidenav-desktop-link" title="Liked restaurant">
+          <span class="material-icons">thumb_up</span>
+          <span class="sidenav-desktop-link-name">Liked restaurant</span>
         </a>
-        <a href="https://linkedin.com/in/ilhammrg" class="sidenav-desktop-link" target="_blank" rel="noreferrer" title="About Us">
+        <a href="https://linkedin.com/in/ilhammrg" class="sidenav-desktop-link" target="_blank" rel="noreferrer" title="About us">
           <span class="material-icons">insert_link</span>
-          <span class="sidenav-desktop-link-name">About Us</span>
+          <span class="sidenav-desktop-link-name">About us</span>
         </a>
       </div>
     `;

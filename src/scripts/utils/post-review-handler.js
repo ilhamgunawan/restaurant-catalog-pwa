@@ -42,6 +42,7 @@ const PostReview = {
 
   async postReview(userReview, inputName, inputReview) {
     const newReviews = await RestaurantSource.postReview(userReview);
+    this.renderReviewsTitle(newReviews.length);
     this.renderUpdatedReviews(newReviews);
     AlertHandler.reviewPostedAlert();
     this.resetForm(inputName, inputReview);
@@ -57,6 +58,11 @@ const PostReview = {
   renderUpdatedReviews(updatedReviews) {
     const reviewListContainer = document.querySelector('.review-list');
     reviewListContainer.innerHTML = ReviewList.render(updatedReviews);
+  },
+
+  renderReviewsTitle(reviewsLength) {
+    const reviewListTitleElement = document.querySelector('.review-title');
+    reviewListTitleElement.innerHTML = ReviewList.renderTotalReviews(reviewsLength);
   },
 
   resetForm(nameInputElement, reviewInputElement) {

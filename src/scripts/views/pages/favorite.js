@@ -21,7 +21,7 @@ const Favorite = {
   },
 
   async afterRender() {
-    HeaderTitleInitiator.init('Favorite List');
+    HeaderTitleInitiator.init('Liked Restaurant');
     NavActiveHandler.toggleActiveNav(3);
 
     const alertPlaceholder = document.querySelector('.alert-placeholder');

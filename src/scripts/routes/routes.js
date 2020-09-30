@@ -7,7 +7,7 @@ const routes = {
   '/': Home,
   '/home': Home,
   '/restaurants': RestaurantCatalogue,
-  '/favorite': Favorite,
+  '/liked-restaurants': Favorite,
   '/detail/:id': RestaurantDetail,
 };
 

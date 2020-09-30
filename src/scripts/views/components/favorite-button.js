@@ -1,13 +1,13 @@
 const FavoriteButton = {
   renderFavoriteButton() {
     return `
-      <button class="material-icons fav-icon" aria-label="favorite" title="Remove from favorite">favorite</button> 
+      <button class="material-icons fav-icon" aria-label="Unlike" title="Unlike this restaurant">favorite</button> 
     `;
   },
 
   renderFavoriteBorderButton() {
     return `
-      <button class="material-icons fav-icon" aria-label="favorite" title="Add to favorite">favorite_border</button> 
+      <button class="material-icons fav-icon" aria-label="Like" title="I like this restaurant">favorite_border</button> 
     `;
   },
 };

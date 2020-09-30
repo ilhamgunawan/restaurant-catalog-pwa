@@ -13,6 +13,10 @@ const ReviewList = {
         </div>
         `, '');
   },
+
+  renderTotalReviews(reviewsLength) {
+    return `${reviewsLength} Reviews`;
+  },
 };
 
 export default ReviewList;

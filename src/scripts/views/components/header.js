@@ -11,13 +11,13 @@ const Header = {
         <a href="#/home" class="topnav-link" title="Home">
           <span class="material-icons">home</span>
         </a>
-        <a href="#/restaurants" class="topnav-link" title="Restaurant Catalogue">
-          <span class="material-icons">library_books</span>
+        <a href="#/restaurants" class="topnav-link" title="Restaurant catalogue">
+          <span class="material-icons">local_dining</span>
         </a>
-        <a href="#/favorite" class="topnav-link" title="Favorite">
-          <span class="material-icons">favorite</span>
+        <a href="#/liked-restaurants" class="topnav-link" title="Liked restaurant">
+          <span class="material-icons">thumb_up</span>
         </a>
-        <a href="https://linkedin.com/in/ilhammrg" class="topnav-link" target="_blank" rel="noreferrer" title="About Us">
+        <a href="https://linkedin.com/in/ilhammrg" class="topnav-link" target="_blank" rel="noreferrer" title="About us">
           <span class="material-icons">insert_link</span>
         </a>
       </aside>

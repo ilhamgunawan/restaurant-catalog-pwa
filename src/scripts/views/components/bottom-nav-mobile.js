@@ -3,8 +3,8 @@ const BottomNavMobile = {
     return `
       <nav class="bottom-nav-wrapper">
         <a href="#/home" class="material-icons bottom-nav-button">home</a>
-        <a href="#/restaurants" class="material-icons bottom-nav-button">library_books</a>
-        <a href="#/favorite" class="material-icons bottom-nav-button">favorite</a>
+        <a href="#/restaurants" class="material-icons bottom-nav-button">local_dining</a>
+        <a href="#/liked-restaurants" class="material-icons bottom-nav-button">thumb_up</a>
       </nav>
     `;
   },

@@ -13,17 +13,17 @@ const AlertHandler = {
   },
 
   fieldCannotEmptyAlert() {
-    this._alertMessageContainer.innerHTML = 'Field cannot be empty';
+    this._alertMessageContainer.innerHTML = 'Fill the form properly!';
     this._alertContainer.classList.toggle('alert-open');
   },
 
   addedToFavoriteAlert() {
-    this._alertMessageContainer.innerHTML = 'Added to favorite list';
+    this._alertMessageContainer.innerHTML = 'Added to liked restaurant';
     this._alertContainer.classList.toggle('alert-open');
   },
 
   removeFromFavoriteAlert() {
-    this._alertMessageContainer.innerHTML = 'Removed from favorite list';
+    this._alertMessageContainer.innerHTML = 'Removed from liked restaurant';
     this._alertContainer.classList.toggle('alert-open');
   },
 

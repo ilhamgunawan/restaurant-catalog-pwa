@@ -77,7 +77,7 @@ const Home = {
     const restaurantLinkContainer = document.querySelector('.restaurant-link-container');
     const favoriteLinkContainer = document.querySelector('.favorite-link-container');
     restaurantLinkContainer.innerHTML = SectionNavigateLink.render('Restaurant Catalogue', '#/restaurants');
-    favoriteLinkContainer.innerHTML = SectionNavigateLink.render('Favorite List', '#/favorite');
+    favoriteLinkContainer.innerHTML = SectionNavigateLink.render('Liked Restaurant', '#/liked-restaurants');
   },
 };
 

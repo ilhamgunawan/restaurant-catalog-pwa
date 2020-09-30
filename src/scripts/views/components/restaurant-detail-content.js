@@ -48,18 +48,16 @@ const RestaurantDetailContent = {
         </div>
       </div>
       <p class="restaurant-description">${description}</p>
+      <h3 class="form-title">Community reviews</h3>
+      <form class="review-form">
+        <input class="form-name-input" type="text" id="your-name" name="your-name" placeholder="Your name...">
+        <textarea class="form-review-input" id="your-review" name="your-review" placeholder="Add a review about this restaurant..."></textarea>
+        <button class="form-submit-button">Review</button>
+      </form>
       <div class="restaurant-reviews-container">
-        <h3 class="review-title">Community Reviews</h3>
+        <h3 class="review-title"></h3>
         <div class="review-list"></div>
       </div>
-      <h3 class="form-title">Post Review</h3>
-      <form class="review-form">
-        <label class="form-name-label" for="your-name">Name:</label>
-        <input class="form-name-input" type="text" id="your-name" name="your-name" placeholder="Your Name">
-        <label class="form-review-label" for="your-review">Review:</label>
-        <textarea class="form-review-input" id="your-review" name="your-review" placeholder="Your Review"></textarea>
-        <button class="form-submit-button">Post Review</button>
-      </form>
       <div class="alert-placeholder"></div>
     `;
   },
@@ -70,6 +68,7 @@ const RestaurantDetailContent = {
     this.renderRestaurantCategories(categories);
     this.renderFoodList(foods);
     this.renderDrinkList(drinks);
+    this.renderReviewsTitle(consumerReviews.length);
     this.renderReviewList(consumerReviews);
     this.submitFormHandler();
 
@@ -121,6 +120,11 @@ const RestaurantDetailContent = {
   renderReviewList(consumerReviews) {
     const reviewListContainer = document.querySelector('.review-list');
     reviewListContainer.innerHTML = ReviewList.render(consumerReviews);
+  },
+
+  renderReviewsTitle(reviewsLength) {
+    const reviewListTitleElement = document.querySelector('.review-title');
+    reviewListTitleElement.innerHTML = ReviewList.renderTotalReviews(reviewsLength);
   },
 };
 
