@@ -1,17 +1,13 @@
 /* eslint-disable no-undef */
 const assert = require('assert');
 
-class FavoriteUtils {
-  static showingEmptyFavorite(I) {
-    I.amOnPage('/#/favorite');
-
-    I.see('Favorite list empty', '.favorite-empty:nth-child(2)');
+class LikeRestaurantUtils {
+  static showingEmptyLikedRestaurant(I) {
+    I.seeElement('.liked-empty-image');
   }
 
-  static async addingRestaurantToFavoriteList(I) {
-    I.amOnPage('/#/favorite');
-
-    I.see('Favorite list empty', '.favorite-empty:nth-child(2)');
+  static async likingRestaurant(I) {
+    I.seeElement('.liked-empty-image');
 
     I.amOnPage('/');
 
@@ -26,7 +22,7 @@ class FavoriteUtils {
     I.seeElement('.fav-button-container button');
     I.click('.fav-button-container button');
 
-    I.amOnPage('/#/favorite');
+    I.amOnPage('/#/liked-restaurants');
     I.seeElement('.card-wrapper');
 
     const favoriteRestaurantTitleText = await I.grabTextFrom('.card-title');
@@ -34,18 +30,16 @@ class FavoriteUtils {
     assert.strictEqual(firstRestaurantTitleText, favoriteRestaurantTitleText);
   }
 
-  static removingRestaurantFromFavoriteList(I) {
-    I.amOnPage('/#/favorite');
-
+  static unlikingRestaurant(I) {
     I.seeElement('.card-wrapper');
     I.click('.card-readmore');
 
     I.seeElement('.fav-button-container button');
     I.click('.fav-button-container button');
 
-    I.amOnPage('/#/favorite');
-    I.see('Favorite list empty', '.favorite-empty:nth-child(2)');
+    I.amOnPage('/#/liked-restaurants');
+    I.seeElement('.liked-empty-image');
   }
 }
 
-module.exports = FavoriteUtils;
+module.exports = LikeRestaurantUtils;
