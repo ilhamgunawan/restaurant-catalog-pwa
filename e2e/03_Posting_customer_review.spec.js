@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const reviewerName = 'Ilham';
+const reviewerName = 'User Testing';
 const reviewContent = 'Posting a review for e2e testing.';
 
 const goToFirstRestaurantPage = (I) => {

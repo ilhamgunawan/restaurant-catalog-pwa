@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "node": true
+        "node": true,
+        "jasmine": true
     },
     "extends": [
         "airbnb-base"
@@ -18,6 +19,8 @@
         "object-curly-newline": "off",
         "no-return-assign": "off",
         "no-param-reassign": "off",
-        "max-len": "off"
-    }
+        "max-len": "off",
+        "linebreak-style": 0
+    },
+    "plugins": ["jasmine"]
 }
