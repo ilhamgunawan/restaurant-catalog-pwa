@@ -3,12 +3,9 @@
   /*
     Sidenav Desktop
   */
-
-  .sidenav-desktop-container {
-    .sidenav-desktop-wrapper {
-      .sidenav-desktop-link {
-        padding: 18px;
-      }
+  .sidenav {
+    .sidenav-link {
+      padding: 18px;
     }
   }
 
@@ -16,7 +13,6 @@
   /*
       Main Content
   */
-
   .home-wrapper, 
   .restaurant-catalogue-wrapper, 
   .favorite-wrapper, 

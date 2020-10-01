@@ -5,7 +5,7 @@ const Footer = {
         &copy; 2020 
         <span class="footer-title">Cari Résto</span>
         -
-        <a href="https://linkedin.com/in/ilhammrg" class="footer-link" target="_blank" rel="noreferrer" title="About Us">About Us</a>
+        <a href="https://linkedin.com/in/ilham-gunawan" class="footer-link" target="_blank" rel="noreferrer" title="About Us">About Us</a>
       </span>
     `;
   },

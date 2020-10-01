@@ -33,11 +33,11 @@ const PostReview = {
   },
 
   isStringEmpty(string) {
-    return !!(string.length === 0);
+    return (string.length === 0);
   },
 
   isStringOnlyWhiteSpaces(string) {
-    return !!(/^ *$/.test(string));
+    return (/^ *$/.test(string));
   },
 
   async postReview(userReview, inputName, inputReview) {

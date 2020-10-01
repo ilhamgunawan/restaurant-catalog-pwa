@@ -15,8 +15,7 @@ import swRegister from './utils/sw-register';
 const app = new App({
   skipLinkContainer: document.querySelector('#skip-link-container'),
   headerContainer: document.querySelector('#header'),
-  sidenavDesktopContainer: document.querySelector('#sidenav-desktop'),
-  sidenavMobileContainer: document.querySelector('#sidenav-mobile'),
+  sidenavContainer: document.querySelector('.sidenav-container'),
   bottomNavMobileContainer: document.querySelector('#bottom-nav'),
   footerContainer: document.querySelector('#footer'),
   initialLoadingContainer: document.querySelector('#initial-loading'),

@@ -3,7 +3,6 @@ $primary-dark-color: #212121;
 $secondary-dark-color: #313131;
 $tertiary-dark-color: #515151;
 $primary-light-color: #f5f5f5;
-$secondary-color: #0072b1;
 $foreground-color: #F2F3F5;
 $skeleton-color: #dfdfdf;
 $black-custom-color: #1c1e21;
@@ -19,13 +18,10 @@ $box-shadow-deep: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .1
   box-sizing: border-box;
 }
 
-html {
-  background-color: $foreground-color;
-}
-
 body {
   position: relative;
   font-family: 'Inter', sans-serif;
+  background-color: white;
 }
 
 ::selection {
@@ -40,8 +36,7 @@ body {
 .material-icons, 
 .brand-name,
 .hero-image,
-.favorite-empty,
-.sidenav-desktop-title,
+.liked-empty,
 .offline-wrapper,
 a, 
 button,
@@ -54,14 +49,13 @@ footer {
 /*
     Skip to content link
 */
-
 .skip-link {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
   text-decoration: none;
-  background-color: $secondary-color;
+  background-color: cornflowerblue;
   color: white;
   border: solid white 2px;
   padding: 10px;
@@ -74,30 +68,8 @@ footer {
 
 
 /*
-    Initial Loading
+    Header
 */
-
-.initial-loading-container {
-  display: none;
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 99;
-  background-color: white;
-}
-
-.render-initial-loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-/*
-    Top Navbar
-*/
-
 header {
   position: fixed;
   top: 0;
@@ -111,32 +83,32 @@ header {
   .brand-container {
     width: 100%;
 
-      .brand-name {
-          font-family: 'Permanent Marker', cursive;
-          text-align: center;
-          color: $primary-light-color;
-          font-size: 1rem;
-          font-weight: 400;
-      }
+    .brand-name {
+      font-family: 'Permanent Marker', cursive;
+      text-align: center;
+      color: $primary-light-color;
+      font-size: 1rem;
+      font-weight: 400;
+    }
   }
 
   .menu-button-container {
-      display: flex;
-      align-items: center;
+    display: flex;
+    align-items: center;
 
-      .menu-button {
-          font-size: 2rem;
-          color: $primary-light-color;
-          background-color: inherit;
-          border: none;
-          padding: 0.5rem;
-          transition: $transition-standard;
+    .menu-button {
+      font-size: 2rem;
+      color: $primary-light-color;
+      background-color: inherit;
+      border: none;
+      padding: 0.5rem;
+      transition: $transition-standard;
 
-          &:hover {
-            cursor: pointer;
-            color: $accent-primary-color;
-          }
+      &:hover {
+        cursor: pointer;
+        color: $accent-primary-color;
       }
+    }
   }
 
   .topnav-container {
@@ -146,10 +118,9 @@ header {
 
 
 /*
-    Sidenav Mobile
+    Sidenav mobile container
 */
-
-.sidenav-mobile {
+.sidenav-container {
   display: none;
   flex-direction: column;
   justify-content: space-between;
@@ -162,59 +133,12 @@ header {
   background-color: $foreground-color;
   box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1);
   transform: translate(-100%, 0);
-
-  .sidenav-wrapper {
-    display: flex;
-    flex-direction: column;
-
-    .sidenav-link {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: $black-custom-color;
-      padding: 0.8rem 1.5rem;
-
-      &:hover {
-        cursor: pointer;
-        background-color: #eaeaea;
-      }
-
-      .material-icons {
-        font-size: 1.5rem;
-      }
-
-      .sidenav-link-name {
-        font-weight: 400;
-        font-size: 1rem;
-        margin-left: 15px;
-      }
-    }
-  }
-
-  .sidenav-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: $tertiary-dark-color;
-    padding: 1rem;
-    font-size: 0.9rem;
-    border-top: 1px solid #ddd;
-
-    .footer-title {
-      font-family: 'Permanent Marker', cursive;
-      font-weight: 600;
-    }
-
-    .footer-link {
-      color: $tertiary-dark-color;
-
-      &:hover {
-        color: $accent-primary-color;
-      }
-    }
-  }
 }
 
+
+/*
+    Sidenav mobile open
+*/
 .open {
   display: flex;
   transform: translate(0, 0);
@@ -222,18 +146,72 @@ header {
 
 
 /*
-    Sidenav Desktop
+    Sidenav mobile
 */
+.sidenav {
+  display: flex;
+  flex-direction: column;
 
-.sidenav-desktop-wrapper {
-  display: none;
+  .sidenav-title {
+    padding: 0.8rem 1.5rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .sidenav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: $black-custom-color;
+    padding: 0.8rem 1.5rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #eaeaea;
+    }
+
+    .material-icons {
+      font-size: 1.5rem;
+    }
+
+    .sidenav-link-name {
+      font-weight: 400;
+      font-size: 1rem;
+      margin-left: 15px;
+    }
+  }
+}
+
+
+/*
+    Sidenav footer
+*/
+.sidenav-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $tertiary-dark-color;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-top: 1px solid #ddd;
+
+  .footer-title {
+    font-family: 'Permanent Marker', cursive;
+    font-weight: 600;
+  }
+
+  .footer-link {
+    color: $tertiary-dark-color;
+
+    &:hover {
+      color: $accent-primary-color;
+    }
+  }
 }
 
 
 /*
     Bottom Navbar Mobile
 */
-
 #bottom-nav {
   position: fixed;
   bottom: 0;
@@ -276,34 +254,14 @@ header {
 /*
     Footer Desktop
 */
-
 footer {
   display: none;
 }
 
 
 /*
-    Loading indicator
-*/
-
-.loading-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 30px 0;
-
-  .loading-text {
-    font-size: 1rem;
-  }
-}
-
-
-/*
     Main Content
 */
-
 #mainContent {
   min-height: 90vh;
   margin-top: 45px;
@@ -327,7 +285,6 @@ footer {
 /*
     Hero Section
 */
-
 .hero-wrapper {
   position: relative;
   height: 240px;
@@ -381,7 +338,6 @@ footer {
 /*
     Restaurant Section
 */
-
 .restaurant-section {
   .section-navigate-link {
     display: block;
@@ -417,7 +373,7 @@ footer {
     align-items: center;
   }
 
-  .favorite-empty {
+  .liked-empty {
     margin: auto;
     grid-column: 1 / 99;
     height: 80vh;
@@ -443,17 +399,10 @@ footer {
   }
 }
 
-.favorite-wrapper {
-  .favorite-empty.material-icons {
-    margin-top: 2rem;
-  }
-}
-
 
 /*
     Card
 */
-
 .card-wrapper {
   width: 90%;
   overflow: hidden;
@@ -579,7 +528,6 @@ footer {
 /*
     Restaurant Detail
 */
-
 .restaurant-detail-content {
   display: flex;
   flex-direction: column;
@@ -717,6 +665,7 @@ footer {
         display: flex;
         flex-direction: row;
         align-items: center;
+        overflow: auto;
 
         .material-icons {
           margin-right: 5px;
@@ -788,7 +737,6 @@ footer {
 /*
     Alert component
 */
-
 .alert-container {
   position: fixed;
   bottom: 10%;
@@ -816,7 +764,6 @@ footer {
 /*
     Offline indicator
 */
-
 .offline-wrapper {
   display: flex;
   flex-direction: column;
@@ -835,10 +782,9 @@ footer {
 /*
     Empty favorite button
 */
-
 .empty-favorite-button {
   position: fixed;
-  z-index: 3;
+  z-index: 99;
   right: 10%;
   bottom: 10%;
   background-color: $accent-primary-color;

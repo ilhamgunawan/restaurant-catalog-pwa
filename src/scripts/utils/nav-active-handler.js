@@ -3,7 +3,7 @@ const NavActiveHandler = {
     this._resetActiveNav();
     const activeHeaderNav = document.querySelector(`.topnav-link:nth-child(${activeNavPosition})`);
     const activeBottomNav = document.querySelector(`.bottom-nav-button:nth-child(${activeNavPosition})`);
-    const activeSidenav = document.querySelector(`.sidenav-desktop-link:nth-child(${activeNavPosition + 1})`);
+    const activeSidenav = document.querySelector(`.sidenav-link:nth-child(${activeNavPosition + 1})`);
     activeHeaderNav.classList.toggle('active-nav');
     activeBottomNav.classList.toggle('active-nav');
     activeSidenav.classList.toggle('active-nav');
@@ -26,7 +26,7 @@ const NavActiveHandler = {
   },
 
   _resetSidenav() {
-    const sideNavLinks = Array.from(document.querySelectorAll('.sidenav-desktop-link'));
+    const sideNavLinks = Array.from(document.querySelectorAll('.sidenav-link'));
     this._removeActiveNavClass(sideNavLinks);
   },
 

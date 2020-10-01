@@ -4,8 +4,7 @@ import UrlParser from '../routes/url-parser';
 
 import SkipLink from './components/skip-link';
 import Header from './components/header';
-import SidenavDesktop from './components/sidenav-desktop';
-import SidenavMobile from './components/sidenav-mobile';
+import SideNav from './components/side-nav';
 import BottomNavMobile from './components/bottom-nav-mobile';
 import Footer from './components/footer';
 
@@ -13,15 +12,15 @@ class App {
   constructor({
     skipLinkContainer,
     headerContainer,
+    sidenavContainer,
     sidenavDesktopContainer,
-    sidenavMobileContainer,
     bottomNavMobileContainer,
     footerContainer,
     content }) {
     this._skipLinkContainer = skipLinkContainer;
     this._headerContainer = headerContainer;
+    this._sidenavContainer = sidenavContainer;
     this._sidenavDesktopContainer = sidenavDesktopContainer;
-    this._sidenavMobileContainer = sidenavMobileContainer;
     this._bottomNavMobileContainer = bottomNavMobileContainer;
     this._footerContainer = footerContainer;
     this._content = content;
@@ -31,8 +30,7 @@ class App {
   initialAppShell() {
     this._skipLinkContainer.innerHTML = SkipLink.render();
     this._headerContainer.innerHTML = Header.render();
-    this._sidenavDesktopContainer.innerHTML = SidenavDesktop.render();
-    this._sidenavMobileContainer.innerHTML = SidenavMobile.render();
+    this._sidenavContainer.innerHTML = SideNav.render();
     this._bottomNavMobileContainer.innerHTML = BottomNavMobile.render();
     this._footerContainer.innerHTML = Footer.render();
     DrawerHandler.init();

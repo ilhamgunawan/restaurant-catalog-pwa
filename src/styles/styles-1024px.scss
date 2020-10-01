@@ -1,9 +1,7 @@
 @media screen and (min-width: 1024px) {
-
   /*
     Main Content
   */
-
   .home-wrapper, 
   .restaurant-catalogue-wrapper, 
   .favorite-wrapper, 
@@ -24,7 +22,6 @@
   /*
     Hero Section
   */
-
   .hero-wrapper {
     .hero-image {
       object-fit: cover;
@@ -35,7 +32,6 @@
   /*
     Restaurant Section
   */
-
   .restaurant-section {
     .restaurant-list {
       grid-template-columns: 1fr 1fr 1fr;

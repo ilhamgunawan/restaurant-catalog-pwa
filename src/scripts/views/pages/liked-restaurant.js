@@ -3,11 +3,11 @@ import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
 import CardSkeletonInitiator from '../../utils/card-skeleton-initiator';
 import HeaderTitleInitiator from '../../utils/header-title-initiator';
 import NavActiveHandler from '../../utils/nav-active-handler';
-import FavoriteEmptyIndicator from '../components/favorite-empty-indicator';
+import EmptyLikedIndicator from '../components/empty-liked-indicator';
 import EmptyFavoriteHandler from '../../utils/empty-favorite-handler';
 import AlertHandler from '../../utils/alert-handler';
 
-const Favorite = {
+const LikedRestaurant = {
   async render() {
     return `
       <div class="favorite-wrapper">
@@ -51,8 +51,8 @@ const Favorite = {
   },
 
   renderEmptyFavoriteList(restaurantListContainer) {
-    restaurantListContainer.innerHTML = FavoriteEmptyIndicator.render();
+    restaurantListContainer.innerHTML = EmptyLikedIndicator.render();
   },
 };
 
-export default Favorite;
+export default LikedRestaurant;

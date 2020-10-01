@@ -4,7 +4,6 @@ $primary-dark-color: #212121;
 $secondary-dark-color: #313131;
 $tertiary-dark-color: #515151;
 $primary-light-color: #f5f5f5;
-$secondary-color: #0072b1;
 $black-custom-color: #1c1e21;
 $foreground-color: #F2F3F5;
 $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
@@ -12,9 +11,8 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 @media screen and (min-width: 768px) {
 
   /*
-    Top Navbar
+      Header nav
   */
-
   header {
     justify-content: space-between;
 
@@ -22,9 +20,9 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
       width: fit-content;
       padding-left: 1rem;
 
-        .brand-name {
-            font-size: 1.3rem;
-        }
+      .brand-name {
+          font-size: 1.3rem;
+      }
     } 
 
     .menu-button-container {
@@ -68,27 +66,16 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
 
   /*
-    Sidenav Mobile
+    Sidenav mobile
   */
-
   .sidenav-mobile {
     display: none;
   }
 
 
   /*
-    Loading indicator
-  */
-
-  .loading-holder {
-    grid-column: 2 / 3;
-  }
-
-
-  /*
     Main Content
   */
-
   #mainContent {
     min-height: 93vh;
     position: relative;
@@ -102,62 +89,78 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     grid-template-columns: 1fr 3fr;
   }
 
+  .home-fav-section {
+    grid-column-start: 2;
+  }
+
 
   /*
-    Sidenav Desktop
+    Sidenav desktop container
   */
+  .sidenav-container {
+    display: flex;
+    transform: translate(0, 0);
+    width: auto;
+    box-shadow: none;
+    z-index: 1;
+  }
 
-  .sidenav-desktop-container {
-    .sidenav-desktop-wrapper {
+  .sidenav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    position: fixed;
+    z-index: 1;
+    top: 50px;
+    left: 0;
+    width: 180px;
+    border-right: 1px solid #ddd;
+    height: 100%;
+    background-color: $foreground-color;
+
+    .sidenav-title {
+      padding: 10px 0 10px 15px;
+      color: $tertiary-dark-color;
+      font-weight: 600;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .sidenav-link {
+      text-decoration: none;
       display: flex;
-      flex-direction: column;
-      margin-top: 5px;
-      position: fixed;
-      z-index: 2;
-      top: 50px;
-      left: 0;
-      width: 180px;
-      border-right: 1px solid #ddd;
-      height: 100%;
-      background-color: $foreground-color;
-
-      .sidenav-desktop-title {
-        padding: 10px 0 10px 15px;
-        color: $tertiary-dark-color;
-        font-weight: 600;
-        border-bottom: 1px solid #ddd;
-      }
-  
-      .sidenav-desktop-link {
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        color: $secondary-dark-color;
-        padding: 15px;
-        
-        &:hover {
-          color: $primary-dark-color;
-          background-color: #ddd;
-        }
-  
-        .sidenav-desktop-link-name {
-          margin-left: 20px;
-        }
-      }
-
-      .sidenav-desktop-link.active-nav {
+      align-items: center;
+      color: $secondary-dark-color;
+      padding: 15px;
+      
+      &:hover {
         color: $primary-dark-color;
         background-color: #ddd;
-        border-right: 4px solid $primary-dark-color;
       }
+
+      .sidenav-link-name {
+        margin-left: 20px;
+      }
+    }
+
+    .sidenav-link.active-nav {
+      color: $primary-dark-color;
+      background-color: #ddd;
+      border-right: 4px solid $primary-dark-color;
     }
   }
 
 
   /*
-    Hero Section
+    Sidenav footer
   */
+  .sidenav-footer {
+    display: none;
+  }
 
+
+  /*
+    Hero section
+  */
   .hero-wrapper {
     grid-column: 2 / 3;
     height: 320px;
@@ -175,15 +178,10 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
   }
 
-  .home-fav-section {
-    grid-column-start: 2;
-  }
-
 
   /*
-    Restaurant Section
+    Restaurant section
   */
-
   .restaurant-section {
     grid-column: 2 / 3;
 
@@ -199,9 +197,8 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
 
   /*
-    Restaurant Detail
+    Restaurant detail
   */
-
   .restaurant-detail-content {
     grid-column: 2 / 3;
     margin-top: 20px;
@@ -240,7 +237,6 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   /*
     Card
   */
-
   .card-wrapper {
     width: auto;
     margin: 0 16px 16px 0;
@@ -255,18 +251,16 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 
 
   /*
-    Bottom Navbar Mobile
+    Bottom nav mobile
   */
-
   #bottom-nav {
     display: none;
   }
 
 
   /*
-    Footer Desktop
+    Footer desktop
   */
-
   footer {
     background-color: $foreground-color;
     width: 100%;
@@ -276,7 +270,7 @@ $transition-standard: 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     padding: 1rem;
     position: absolute;
     bottom: 0;
-    z-index: 2;
+    z-index: 98;
     border-top: 1px solid #ddd;
     
     .footer-text {

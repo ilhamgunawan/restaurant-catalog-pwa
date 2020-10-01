@@ -17,7 +17,7 @@ const Header = {
         <a href="#/liked-restaurants" class="topnav-link" title="Liked restaurant">
           <span class="material-icons">thumb_up</span>
         </a>
-        <a href="https://linkedin.com/in/ilhammrg" class="topnav-link" target="_blank" rel="noreferrer" title="About us">
+        <a href="https://linkedin.com/in/ilham-gunawan" class="topnav-link" target="_blank" rel="noreferrer" title="About us">
           <span class="material-icons">insert_link</span>
         </a>
       </aside>

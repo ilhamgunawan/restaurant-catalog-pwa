@@ -7,7 +7,7 @@ import OfflineConnectionHandler from '../../utils/offline-connection-handler';
 import CardSkeletonInitiator from '../../utils/card-skeleton-initiator';
 import HeaderTitleInitiator from '../../utils/header-title-initiator';
 import NavActiveHandler from '../../utils/nav-active-handler';
-import FavoriteEmptyIndicator from '../components/favorite-empty-indicator';
+import EmptyLikedIndicator from '../components/empty-liked-indicator';
 
 const Home = {
   async render() {
@@ -70,7 +70,7 @@ const Home = {
   },
 
   renderEmptyFavoriteList(favoriteListContainer) {
-    favoriteListContainer.innerHTML = FavoriteEmptyIndicator.render();
+    favoriteListContainer.innerHTML = EmptyLikedIndicator.render();
   },
 
   renderSectionLink() {

@@ -1,7 +1,7 @@
 const DrawerHandler = {
   init() {
     this._menuButton = document.querySelector('.open-nav-button');
-    this._drawer = document.querySelector('.sidenav-mobile');
+    this._drawer = document.querySelector('.sidenav-container');
     this._menuButton.addEventListener('click', (event) => {
       this.openDrawer(event, this._drawer);
     });
