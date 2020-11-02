@@ -63,13 +63,13 @@ const RestaurantDetailContent = {
   },
 
   async afterRender(restaurant) {
-    const { id, menus: { foods, drinks }, consumerReviews, categories } = restaurant;
+    const { id, menus: { foods, drinks }, customerReviews, categories } = restaurant;
 
     this.renderRestaurantCategories(categories);
     this.renderFoodList(foods);
     this.renderDrinkList(drinks);
-    this.renderReviewsTitle(consumerReviews.length);
-    this.renderReviewList(consumerReviews);
+    this.renderReviewsTitle(customerReviews.length);
+    this.renderReviewList(customerReviews);
     this.submitFormHandler();
 
     const alertPlaceholder = document.querySelector('.alert-placeholder');
